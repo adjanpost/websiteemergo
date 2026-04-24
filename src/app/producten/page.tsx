@@ -1,125 +1,237 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Check } from "lucide-react";
+import { products } from "@/lib/products";
+import { OfferteButton } from "@/components/offerte-button";
+import { MadeInEU } from "@/components/MadeInEU";
+import { MaatConfigurator } from "@/components/MaatConfigurator";
 
-const producten = [
-  {
-    id: "solo",
-    naam: "EMERGO Solo",
-    ondertitel: "Compact & stijlvol",
-    beschrijving:
-      "Het perfecte verblijf voor één hond. Compact van formaat, groot van kwaliteit. Ideaal voor kleinere tuinen.",
-    kenmerken: [
-      "Geschikt voor honden tot 30 kg",
-      "Geïsoleerde wanden en dak",
-      "Behandeld douglashout",
-      "Afmetingen op maat",
-    ],
-    badge: null,
-    prijs: "Vanaf €895",
-  },
-  {
-    id: "duo",
-    naam: "EMERGO Duo",
-    ondertitel: "Ruim & comfortabel",
-    beschrijving:
-      "Onze populairste uitvoering. Ruim genoeg voor grote rassen, met een overdekt terrasje voor uw hond.",
-    kenmerken: [
-      "Geschikt voor alle hondenrassen",
-      "Overdekt terrasgedeelte",
-      "Premium geïsoleerd",
-      "Geïntegreerde opbergruimte",
-    ],
-    badge: "Bestseller",
-    prijs: "Vanaf €1.495",
-  },
-  {
-    id: "suite",
-    naam: "EMERGO Suite",
-    ondertitel: "Het ultieme verblijf",
-    beschrijving:
-      "Voor de hond die alles mag hebben. De EMERGO Suite is het meest complete en luxe buitenverblijf dat wij maken.",
-    kenmerken: [
-      "Maximale afmetingen op maat",
-      "Verwarmingssysteem inbegrepen",
-      "Vloerverwarming optioneel",
-      "Volledig maatwerk interieur",
-    ],
-    badge: "Premium",
-    prijs: "Vanaf €2.995",
-  },
+export const metadata: Metadata = {
+  title: "Producten",
+  description:
+    "Ontdek de EMERGO Kennel en EMERGO Shelter — handgemaakte premium buitenverblijven van massief Europees hout en donkergroen staal.",
+};
+
+const compareItems = [
+  "Massief Europees hout",
+  "10 jaar garantie",
+  "Op maat leverbaar",
 ];
 
 export default function ProductenPage() {
   return (
-    <>
-      <section className="bg-secondary/40 py-16 md:py-24 border-b">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Onze collectie</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Drie series, elk met zijn eigen karakter. Allemaal met het EMERGO kwaliteitsgarantie.
-              Elk verblijf wordt op maat gemaakt voor uw hond.
-            </p>
-          </div>
+    <div className="pt-20">
+
+      {/* ══════════════════════════════════════════
+          MINI-HERO
+      ══════════════════════════════════════════ */}
+      <section
+        className="flex items-center justify-center text-center"
+        style={{ backgroundColor: "#1a2e1a", minHeight: 380 }}
+        data-cursor="light"
+      >
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16 py-20">
+          <p
+            className="text-[10px] tracking-[0.4em] uppercase text-white/40 mb-8"
+            style={{ fontFamily: "var(--font-sans)" }}
+          >
+            Handgemaakt in Nederland
+          </p>
+          <h1
+            className="font-light text-white leading-[1.05] mb-8"
+            style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.2rem, 5vw, 4.5rem)" }}
+          >
+            Twee producten.
+            <br />
+            <em className="italic">Eén standaard.</em>
+          </h1>
+          <p
+            className="font-light leading-relaxed mx-auto"
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.9rem",
+              color: "rgba(255,255,255,0.6)",
+              maxWidth: 520,
+            }}
+          >
+            De EMERGO Kennel en Shelter zijn elk ontworpen vanuit dezelfde overtuiging — een
+            buitenverblijf moet mooi zijn, duurzaam zijn, en een leven meegaan.
+          </p>
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {producten.map((product) => (
-              <Card key={product.id} className="flex flex-col border shadow-sm hover:shadow-md transition-shadow">
-                <CardHeader className="pb-4">
-                  {product.badge && (
-                    <Badge className="w-fit mb-3 bg-accent text-accent-foreground border-0">
-                      {product.badge}
-                    </Badge>
-                  )}
-                  <CardTitle className="text-2xl">{product.naam}</CardTitle>
-                  <p className="text-sm text-muted-foreground font-medium">{product.ondertitel}</p>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    {product.beschrijving}
-                  </p>
-                  <ul className="space-y-2">
-                    {product.kenmerken.map((kenmerk) => (
-                      <li key={kenmerk} className="flex items-start gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                        {kenmerk}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex flex-col items-start gap-4 pt-6 border-t">
-                  <p className="font-bold text-lg">{product.prijs}</p>
-                  <Button asChild className="w-full">
-                    <Link href="/contact">
-                      Offerte aanvragen
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
+      {/* ══════════════════════════════════════════
+          PRODUCTEN GRID
+      ══════════════════════════════════════════ */}
+      <section className="py-24 md:py-36">
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {products.map((product) => (
+              <Link
+                key={product.slug}
+                href={`/producten/${product.slug}`}
+                className="product-card-outer block"
+              >
+                <div
+                  className="product-card-inner relative aspect-[4/5]"
+                  style={{
+                    backgroundImage: `url(${product.overviewImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="product-card-overlay absolute inset-0" />
+
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+                    <p
+                      className="text-[10px] tracking-[0.3em] uppercase mb-3"
+                      style={{ fontFamily: "var(--font-sans)", color: "#c4956a" }}
+                    >
+                      {product.name}
+                    </p>
+                    <h2
+                      className="font-light italic text-white leading-snug mb-4"
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(1.8rem, 2.8vw, 2.8rem)",
+                      }}
+                    >
+                      {product.tagline}
+                    </h2>
+                    <p
+                      className="text-white/75 mb-5 leading-relaxed"
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "0.85rem", maxWidth: "40ch" }}
+                    >
+                      {product.cardTagline}
+                    </p>
+                    <div className="mb-5">
+                      <MadeInEU
+                        style={{
+                          background: "rgba(248,245,240,0.08)",
+                          border: "0.5px solid rgba(248,245,240,0.15)",
+                        }}
+                      />
+                    </div>
+                    <span
+                      className="product-card-cta"
+                      style={{ fontFamily: "var(--font-sans)", fontSize: "0.7rem", letterSpacing: "0.2em" }}
+                    >
+                      Bekijk product
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+                        strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}>
+                        <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Niet gevonden wat u zoekt?</h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto">
-            Wij maken ook volledig custom verblijven. Neem contact op en vertel ons uw wensen.
-          </p>
-          <Button asChild variant="secondary" size="lg">
-            <Link href="/contact">Neem contact op</Link>
-          </Button>
+      {/* ══════════════════════════════════════════
+          VERGELIJKINGSBALK
+      ══════════════════════════════════════════ */}
+      <section
+        className="py-12 border-t border-b border-border"
+        style={{ backgroundColor: "oklch(0.96 0.005 80)" }}
+      >
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-0 divide-y md:divide-y-0 md:divide-x divide-border">
+            {compareItems.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 px-10 py-4 md:py-0"
+              >
+                <span
+                  className="shrink-0"
+                  style={{ width: 20, height: 1, backgroundColor: "#c4956a", display: "block" }}
+                />
+                <span
+                  className="text-sm font-light text-foreground/70"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-    </>
+
+      {/* ══════════════════════════════════════════
+          MAATCONFIGURATOR
+      ══════════════════════════════════════════ */}
+      <section className="py-24 md:py-36" style={{ backgroundColor: "oklch(0.96 0.005 80)" }}>
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+            <div>
+              <p
+                className="text-[10px] tracking-[0.4em] uppercase mb-4"
+                style={{ fontFamily: "var(--font-sans)", color: "#c4956a" }}
+              >
+                Vind uw maat
+              </p>
+              <h2
+                className="font-light leading-[1.05] mb-4"
+                style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}
+              >
+                Welk model past
+                <br />
+                <em className="italic">bij uw situatie?</em>
+              </h2>
+              <p
+                className="text-sm font-light text-muted-foreground leading-relaxed"
+                style={{ fontFamily: "var(--font-sans)", maxWidth: "38ch" }}
+              >
+                Voer de gewenste breedte en diepte in. Wij tonen direct de passende modellen uit onze collectie.
+              </p>
+            </div>
+            <div>
+              <MaatConfigurator />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          CTA
+      ══════════════════════════════════════════ */}
+      <section
+        className="py-36 md:py-48 text-center"
+        style={{ backgroundColor: "#1a2e1a" }}
+        data-cursor="light"
+      >
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16">
+          <h2
+            className="font-light text-white leading-[1.05] mb-6"
+            style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+          >
+            Weet u al wat u zoekt?
+          </h2>
+          <p
+            className="font-light mb-14"
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.9rem",
+              color: "rgba(255,255,255,0.55)",
+            }}
+          >
+            Of twijfelt u nog? Wij denken graag met u mee.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+            <OfferteButton href="/contact" />
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-10 py-5 border border-white/30 text-[10px] tracking-[0.3em] uppercase text-white/70 hover:border-white/60 hover:text-white transition-colors duration-400"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Neem contact op
+            </Link>
+          </div>
+        </div>
+      </section>
+
+    </div>
   );
 }
