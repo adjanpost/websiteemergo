@@ -72,7 +72,7 @@ export default function ProductenPage() {
                 className="product-card-outer block"
               >
                 <div
-                  className="product-card-inner relative aspect-[4/5]"
+                  className="product-card-inner relative aspect-[3/2]"
                   style={{
                     backgroundImage: `url(${product.overviewImage})`,
                     backgroundSize: "cover",

@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 
-// ── Types ──────────────────────────────────────────────────────────
 type Model = {
   collectie: string;
   naam: string;
@@ -14,12 +13,11 @@ type Model = {
 type PlacedKennel = {
   id: string;
   model: Model;
-  x: number; // px
-  y: number; // px
+  x: number;
+  y: number;
   rotated: boolean;
 };
 
-// ── Data ───────────────────────────────────────────────────────────
 const MODELLEN: Model[] = [
   { collectie: "Classic",  naam: "S",  breedte: 80,  diepte: 60  },
   { collectie: "Classic",  naam: "M",  breedte: 100, diepte: 80  },
@@ -33,9 +31,10 @@ const MODELLEN: Model[] = [
   { collectie: "Estate",   naam: "XL", breedte: 220, diepte: 180 },
 ];
 
-const CANVAS_W = 680;
+const COLLECTIES = ["Classic", "Heritage", "Urban", "Estate"] as const;
+const CANVAS_W   = 680;
+const TOOLBAR_H  = 48;
 
-// ── Helpers ────────────────────────────────────────────────────────
 function px(model: Model, rotated: boolean, scale: number) {
   const w = ((rotated ? model.diepte : model.breedte) / 100) * scale;
   const h = ((rotated ? model.breedte : model.diepte) / 100) * scale;
@@ -49,7 +48,6 @@ function overlaps(
   return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
 }
 
-// ── Shared styles ──────────────────────────────────────────────────
 const labelSt: React.CSSProperties = {
   display: "block",
   fontFamily: "var(--font-sans)",
@@ -62,7 +60,8 @@ const labelSt: React.CSSProperties = {
 };
 
 const inputSt: React.CSSProperties = {
-  padding: "0.6rem 0.75rem",
+  flex: 1,
+  padding: "0.65rem 0.8rem",
   fontFamily: "var(--font-sans)",
   fontSize: "0.9rem",
   fontWeight: 300,
@@ -71,24 +70,9 @@ const inputSt: React.CSSProperties = {
   border: "0.5px solid #ddd8cf",
   outline: "none",
   borderRadius: 0,
-  width: "100%",
   boxSizing: "border-box" as const,
 };
 
-const btnSt: React.CSSProperties = {
-  background: "transparent",
-  border: "0.5px solid #ddd8cf",
-  color: "rgba(26,46,26,0.6)",
-  fontFamily: "var(--font-sans)",
-  fontSize: "0.6rem",
-  letterSpacing: "0.2em",
-  textTransform: "uppercase" as const,
-  padding: "0.45rem 0.9rem",
-  cursor: "pointer",
-  borderRadius: 0,
-};
-
-// ── Component ──────────────────────────────────────────────────────
 export function RuimtePlanner() {
   const [tuinB, setTuinB] = useState(10);
   const [tuinD, setTuinD] = useState(8);
@@ -101,7 +85,7 @@ export function RuimtePlanner() {
   const scale   = CANVAS_W / tuinB;
   const canvasH = Math.round(tuinD * scale);
 
-  // ── Overlap detection ──────────────────────────────────────────
+  // Overlap detection
   const overlappingIds = new Set<string>();
   for (let i = 0; i < kennels.length; i++) {
     for (let j = i + 1; j < kennels.length; j++) {
@@ -115,7 +99,6 @@ export function RuimtePlanner() {
     }
   }
 
-  // ── Garden resize (proportional reposition) ────────────────────
   const handleTuinChange = (axis: "b" | "d", raw: number) => {
     const val = Math.max(3, Math.min(50, raw || 3));
     const newB = axis === "b" ? val : tuinB;
@@ -138,7 +121,6 @@ export function RuimtePlanner() {
     else setTuinD(val);
   };
 
-  // ── Add kennel (centered) ──────────────────────────────────────
   const addKennel = (model: Model) => {
     const { w, h } = px(model, false, scale);
     const id = `${model.collectie}-${model.naam}-${Date.now()}`;
@@ -149,7 +131,6 @@ export function RuimtePlanner() {
     setSelected(id);
   };
 
-  // ── Drag ──────────────────────────────────────────────────────
   const onMouseDown = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -181,7 +162,6 @@ export function RuimtePlanner() {
 
   const stopDrag = () => { drag.current = null; };
 
-  // ── Rotate ────────────────────────────────────────────────────
   const rotateKennel = (id: string) => {
     setKennels(prev =>
       prev.map(k => {
@@ -197,175 +177,220 @@ export function RuimtePlanner() {
     );
   };
 
-  // ── Delete ────────────────────────────────────────────────────
   const deleteKennel = (id: string) => {
     setKennels(prev => prev.filter(k => k.id !== id));
     if (selected === id) setSelected(null);
   };
 
-  // ── Render ────────────────────────────────────────────────────
+  const selectedKennel = kennels.find(k => k.id === selected);
+
   return (
     <div style={{ fontFamily: "var(--font-sans)" }}>
 
-      {/* Garden size inputs */}
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
-        <div style={{ flex: "1 1 110px" }}>
-          <label style={labelSt} htmlFor="rp-b">Tuinbreedte (m)</label>
-          <input
-            id="rp-b"
-            type="number"
-            min={3}
-            max={50}
-            value={tuinB}
-            onChange={e => handleTuinChange("b", Number(e.target.value))}
-            style={inputSt}
-          />
+      {/* ── Tuin inputs ── */}
+      <div style={{ display: "flex", gap: "1.5rem", marginBottom: "2rem", alignItems: "flex-end", flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 120px" }}>
+          <label style={labelSt} htmlFor="rp-b">Tuinbreedte</label>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <input id="rp-b" type="number" min={3} max={50} value={tuinB}
+              onChange={e => handleTuinChange("b", Number(e.target.value))}
+              style={inputSt}
+            />
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.72rem", color: "rgba(26,46,26,0.38)", flexShrink: 0 }}>m</span>
+          </div>
         </div>
-        <div style={{ flex: "1 1 110px" }}>
-          <label style={labelSt} htmlFor="rp-d">Tuindiepte (m)</label>
-          <input
-            id="rp-d"
-            type="number"
-            min={3}
-            max={50}
-            value={tuinD}
-            onChange={e => handleTuinChange("d", Number(e.target.value))}
-            style={inputSt}
-          />
+        <div style={{ flex: "1 1 120px" }}>
+          <label style={labelSt} htmlFor="rp-d">Tuindiepte</label>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <input id="rp-d" type="number" min={3} max={50} value={tuinD}
+              onChange={e => handleTuinChange("d", Number(e.target.value))}
+              style={inputSt}
+            />
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.72rem", color: "rgba(26,46,26,0.38)", flexShrink: 0 }}>m</span>
+          </div>
+        </div>
+        <div style={{ flexShrink: 0, paddingBottom: "0.05rem" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.57rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(26,46,26,0.35)", marginBottom: "0.25rem" }}>
+            Oppervlakte
+          </p>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: "1.6rem", fontWeight: 300, color: "#1a2e1a", lineHeight: 1 }}>
+            {(tuinB * tuinD).toFixed(0)} m²
+          </p>
         </div>
       </div>
 
-      {/* Main layout: sidebar + canvas */}
-      <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+      {/* ── Hoofd layout ── */}
+      <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap" }}>
 
-        {/* ── Sidebar: model list ────────────────────────────── */}
-        <div
-          style={{
-            width: 190,
-            flexShrink: 0,
-            maxHeight: canvasH + 40,
-            overflowY: "auto",
-          }}
-        >
-          <p style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.58rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "rgba(26,46,26,0.4)",
-            marginBottom: "0.6rem",
-            paddingBottom: "0.5rem",
-            borderBottom: "0.5px solid #ddd8cf",
-          }}>
-            Modellen
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            {MODELLEN.map(m => (
-              <div
-                key={`${m.collectie}-${m.naam}`}
-                style={{
-                  background: "#fff",
-                  border: "0.5px solid #ddd8cf",
-                  padding: "0.6rem 0.7rem",
-                }}
-              >
-                <p style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.53rem",
-                  letterSpacing: "0.25em",
-                  textTransform: "uppercase",
-                  color: "#c4956a",
-                  margin: "0 0 0.15rem",
+        {/* ── Sidebar ── */}
+        <div style={{ width: 190, flexShrink: 0, maxHeight: canvasH + TOOLBAR_H, overflowY: "auto" }}>
+          {COLLECTIES.map(collectie => {
+            const models = MODELLEN.filter(m => m.collectie === collectie);
+            return (
+              <div key={collectie} style={{ marginBottom: "1.25rem" }}>
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  marginBottom: "0.5rem",
+                  paddingBottom: "0.4rem",
+                  borderBottom: "0.5px solid #ddd8cf",
                 }}>
-                  {m.collectie}
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "1rem",
-                  fontWeight: 300,
-                  color: "#1a2e1a",
-                  margin: "0 0 0.1rem",
-                  lineHeight: 1.15,
-                }}>
-                  {m.collectie} {m.naam}
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.65rem",
-                  color: "rgba(26,46,26,0.38)",
-                  margin: "0 0 0.4rem",
-                }}>
-                  {m.breedte} × {m.diepte} cm
-                </p>
-                <button
-                  onClick={() => addKennel(m)}
-                  style={{
-                    width: "100%",
-                    background: "transparent",
-                    border: "0.5px solid #c4956a",
-                    color: "#c4956a",
+                  <div style={{ width: 14, height: 1, background: "#c4956a", flexShrink: 0 }} />
+                  <p style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "0.55rem",
-                    letterSpacing: "0.2em",
+                    fontSize: "0.57rem",
+                    letterSpacing: "0.3em",
                     textTransform: "uppercase",
-                    padding: "0.3rem 0.4rem",
-                    cursor: "pointer",
-                    borderRadius: 0,
-                  }}
-                >
-                  Plaatsen +
-                </button>
+                    color: "#c4956a",
+                    margin: 0,
+                  }}>
+                    {collectie}
+                  </p>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                  {models.map(m => (
+                    <div
+                      key={`${m.collectie}-${m.naam}`}
+                      style={{
+                        background: "#fff",
+                        border: "0.5px solid #ddd8cf",
+                        padding: "0.7rem 0.8rem",
+                      }}
+                    >
+                      <p style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "1rem",
+                        fontWeight: 300,
+                        color: "#1a2e1a",
+                        margin: "0 0 0.15rem",
+                        lineHeight: 1.1,
+                      }}>
+                        {m.collectie} {m.naam}
+                      </p>
+                      <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "0.62rem",
+                        color: "rgba(26,46,26,0.38)",
+                        margin: "0 0 0.5rem",
+                      }}>
+                        {m.breedte} × {m.diepte} cm
+                      </p>
+                      <button
+                        onClick={() => addKennel(m)}
+                        style={{
+                          width: "100%",
+                          background: "transparent",
+                          border: "0.5px solid #c4956a",
+                          color: "#c4956a",
+                          fontFamily: "var(--font-sans)",
+                          fontSize: "0.55rem",
+                          letterSpacing: "0.2em",
+                          textTransform: "uppercase",
+                          padding: "0.35rem",
+                          cursor: "pointer",
+                          borderRadius: 0,
+                        }}
+                      >
+                        Plaatsen +
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        {/* ── Canvas area ────────────────────────────────────── */}
+        {/* ── Canvas gebied ── */}
         <div style={{ flex: 1, minWidth: 0 }}>
 
           {/* Toolbar */}
           <div style={{
+            background: "#1a2e1a",
+            padding: "0 1rem",
+            height: TOOLBAR_H,
             display: "flex",
             alignItems: "center",
-            gap: "0.6rem",
-            marginBottom: "0.6rem",
-            flexWrap: "wrap",
+            gap: "0.75rem",
+            borderBottom: "0.5px solid rgba(255,255,255,0.07)",
           }}>
-            <button
-              style={btnSt}
-              onClick={() => { setKennels([]); setSelected(null); }}
-            >
-              Wis alles
-            </button>
             <span style={{
-              flex: 1,
               fontFamily: "var(--font-sans)",
-              fontSize: "0.6rem",
-              letterSpacing: "0.15em",
+              fontSize: "0.57rem",
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(26,46,26,0.38)",
+              color: "rgba(255,255,255,0.28)",
+              flexShrink: 0,
             }}>
-              {kennels.length} kennel{kennels.length !== 1 ? "s" : ""} geplaatst
+              {kennels.length === 0
+                ? "Geen kennels"
+                : `${kennels.length} kennel${kennels.length !== 1 ? "s" : ""}`}
             </span>
+
+            {selectedKennel && (
+              <>
+                <div style={{ width: 1, height: 12, background: "rgba(255,255,255,0.12)", flexShrink: 0 }} />
+                <span style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.57rem",
+                  letterSpacing: "0.05em",
+                  color: "rgba(255,255,255,0.42)",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}>
+                  {selectedKennel.model.collectie} {selectedKennel.model.naam}
+                  &nbsp;—&nbsp;
+                  {selectedKennel.model.breedte} × {selectedKennel.model.diepte} cm
+                </span>
+              </>
+            )}
+
+            <div style={{ flex: 1 }} />
+
+            {kennels.length > 0 && (
+              <button
+                onClick={() => { setKennels([]); setSelected(null); }}
+                style={{
+                  background: "transparent",
+                  border: "0.5px solid rgba(255,255,255,0.18)",
+                  color: "rgba(255,255,255,0.38)",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  padding: "0.35rem 0.9rem",
+                  cursor: "pointer",
+                  borderRadius: 0,
+                  flexShrink: 0,
+                }}
+              >
+                Wis alles
+              </button>
+            )}
+
             <Link
               href="/contact"
               style={{
                 background: "#c4956a",
                 color: "#1a2e1a",
                 fontFamily: "var(--font-sans)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.25em",
+                fontSize: "0.57rem",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                padding: "0.45rem 1.1rem",
+                padding: "0.5rem 1.2rem",
                 textDecoration: "none",
                 display: "inline-block",
+                flexShrink: 0,
+                fontWeight: 400,
               }}
             >
-              Offerte aanvragen →
+              Offerte →
             </Link>
           </div>
 
-          {/* Canvas wrapper (horizontal scroll on small screens) */}
+          {/* Canvas */}
           <div style={{ overflowX: "auto" }}>
             <div
               ref={canvasRef}
@@ -373,9 +398,8 @@ export function RuimtePlanner() {
                 position: "relative",
                 width: CANVAS_W,
                 height: canvasH,
-                background: "#e8f0e0",
-                border: "1px solid #c4d8a0",
-                overflow: "visible",
+                background: "#1c3018",
+                overflow: "hidden",
                 userSelect: "none",
                 flexShrink: 0,
               }}
@@ -384,44 +408,66 @@ export function RuimtePlanner() {
               onMouseLeave={stopDrag}
               onClick={e => { if (e.target === canvasRef.current) setSelected(null); }}
             >
-              {/* Vertical grid lines */}
+              {/* Grid */}
               {Array.from({ length: Math.ceil(tuinB) - 1 }, (_, i) => (
-                <div
-                  key={`v${i}`}
-                  style={{
-                    position: "absolute",
-                    left: (i + 1) * scale,
-                    top: 0,
-                    width: 1,
-                    height: canvasH,
-                    background: "rgba(0,0,0,0.06)",
-                    pointerEvents: "none",
-                  }}
-                />
+                <div key={`v${i}`} style={{
+                  position: "absolute",
+                  left: (i + 1) * scale,
+                  top: 0,
+                  width: 1,
+                  height: canvasH,
+                  background: "rgba(255,255,255,0.07)",
+                  pointerEvents: "none",
+                }} />
               ))}
-              {/* Horizontal grid lines */}
               {Array.from({ length: Math.ceil(tuinD) - 1 }, (_, i) => (
-                <div
-                  key={`h${i}`}
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: (i + 1) * scale,
-                    width: CANVAS_W,
-                    height: 1,
-                    background: "rgba(0,0,0,0.06)",
-                    pointerEvents: "none",
-                  }}
-                />
+                <div key={`h${i}`} style={{
+                  position: "absolute",
+                  left: 0,
+                  top: (i + 1) * scale,
+                  width: CANVAS_W,
+                  height: 1,
+                  background: "rgba(255,255,255,0.07)",
+                  pointerEvents: "none",
+                }} />
               ))}
 
-              {/* Placed kennels */}
+              {/* Lege staat */}
+              {kennels.length === 0 && (
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  pointerEvents: "none",
+                  gap: "0.75rem",
+                }}>
+                  <div style={{ width: 24, height: 1, background: "rgba(196,149,106,0.3)" }} />
+                  <p style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "clamp(1rem, 2vw, 1.5rem)",
+                    fontWeight: 300,
+                    color: "rgba(255,255,255,0.1)",
+                    textAlign: "center",
+                    lineHeight: 1.4,
+                  }}>
+                    Voeg een model toe
+                    <br />
+                    <em>via het menu links</em>
+                  </p>
+                  <div style={{ width: 24, height: 1, background: "rgba(196,149,106,0.3)" }} />
+                </div>
+              )}
+
+              {/* Kennels */}
               {kennels.map(k => {
                 const { w, h } = px(k.model, k.rotated, scale);
                 const isSel  = selected === k.id;
                 const isOver = overlappingIds.has(k.id);
-                const fs     = Math.max(7, Math.min(12, w / 5));
-                const btnSz  = Math.max(14, fs + 5);
+                const fs     = Math.max(7, Math.min(11, Math.min(w, h) / 3.5));
+                const btnSz  = Math.max(16, fs + 6);
 
                 return (
                   <div
@@ -433,8 +479,13 @@ export function RuimtePlanner() {
                       top: k.y,
                       width: w,
                       height: h,
-                      background: "#2d4a2d",
-                      border: `${isSel ? "2px" : "1.5px"} solid ${isOver ? "#e53e3e" : "#c4956a"}`,
+                      background: isSel
+                        ? "rgba(248,245,240,1)"
+                        : "rgba(248,245,240,0.87)",
+                      border: `${isSel ? "2px" : "1px"} solid ${isOver ? "#e53e3e" : "#c4956a"}`,
+                      boxShadow: isSel
+                        ? "0 0 0 3px rgba(196,149,106,0.22), 0 6px 20px rgba(0,0,0,0.45)"
+                        : "0 2px 10px rgba(0,0,0,0.3)",
                       boxSizing: "border-box",
                       cursor: "grab",
                       display: "flex",
@@ -443,38 +494,34 @@ export function RuimtePlanner() {
                       flexDirection: "column",
                       overflow: "hidden",
                       zIndex: isSel ? 10 : 1,
+                      transition: "box-shadow 0.2s",
                     }}
                   >
-                    {/* Label */}
-                    <span
-                      style={{
-                        color: "rgba(255,255,255,0.85)",
-                        fontSize: fs,
-                        fontFamily: "var(--font-serif)",
-                        textAlign: "center",
-                        lineHeight: 1.3,
-                        userSelect: "none",
-                        pointerEvents: "none",
-                        padding: 2,
-                      }}
-                    >
+                    <span style={{
+                      color: "#1a2e1a",
+                      fontSize: fs,
+                      fontFamily: "var(--font-serif)",
+                      textAlign: "center",
+                      lineHeight: 1.25,
+                      userSelect: "none",
+                      pointerEvents: "none",
+                      padding: 2,
+                      fontWeight: 300,
+                    }}>
                       {k.model.collectie}
                       <br />
                       {k.model.naam}
                     </span>
 
-                    {/* Selection controls */}
                     {isSel && (
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: 2,
-                          right: 2,
-                          display: "flex",
-                          gap: 2,
-                          zIndex: 20,
-                        }}
-                      >
+                      <div style={{
+                        position: "absolute",
+                        top: 2,
+                        right: 2,
+                        display: "flex",
+                        gap: 1,
+                        zIndex: 20,
+                      }}>
                         <button
                           title="Roteer 90°"
                           onMouseDown={e => e.stopPropagation()}
@@ -482,15 +529,14 @@ export function RuimtePlanner() {
                           style={{
                             width: btnSz,
                             height: btnSz,
-                            background: "#c4956a",
-                            color: "#fff",
+                            background: "#1a2e1a",
+                            color: "rgba(255,255,255,0.85)",
                             border: "none",
                             fontSize: fs,
                             cursor: "pointer",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            flexShrink: 0,
                             borderRadius: 0,
                           }}
                         >
@@ -511,7 +557,6 @@ export function RuimtePlanner() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            flexShrink: 0,
                             borderRadius: 0,
                           }}
                         >
@@ -523,37 +568,59 @@ export function RuimtePlanner() {
                 );
               })}
 
-              {/* Scale bar */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 8,
-                  right: 12,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                  pointerEvents: "none",
-                }}
-              >
-                <div style={{ width: scale, height: 2, background: "rgba(0,0,0,0.25)" }} />
+              {/* Schaalregel */}
+              <div style={{
+                position: "absolute",
+                bottom: 12,
+                right: 16,
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                pointerEvents: "none",
+              }}>
+                <div style={{ width: scale, height: 2, background: "rgba(255,255,255,0.28)" }} />
                 <span style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 9,
-                  color: "rgba(0,0,0,0.35)",
+                  letterSpacing: "0.1em",
+                  color: "rgba(255,255,255,0.28)",
                   userSelect: "none",
                 }}>
                   1 m
                 </span>
+              </div>
+
+              {/* Noord-indicator */}
+              <div style={{
+                position: "absolute",
+                top: 12,
+                right: 16,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 2,
+                pointerEvents: "none",
+              }}>
+                <span style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: 9,
+                  letterSpacing: "0.15em",
+                  color: "rgba(255,255,255,0.18)",
+                  userSelect: "none",
+                }}>
+                  N
+                </span>
+                <div style={{ width: 1, height: 10, background: "rgba(255,255,255,0.14)" }} />
               </div>
             </div>
           </div>
 
           {/* Hint */}
           <p style={{
-            marginTop: "0.5rem",
+            marginTop: "0.6rem",
             fontFamily: "var(--font-sans)",
             fontSize: "0.58rem",
-            color: "rgba(26,46,26,0.3)",
+            color: "rgba(26,46,26,0.28)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
           }}>

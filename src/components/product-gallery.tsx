@@ -23,15 +23,26 @@ export function ProductGallery({ images, name }: ProductGalleryProps) {
   return (
     <div>
       <div
-        className="aspect-[4/5] w-full"
+        className="w-full"
         style={{
-          backgroundImage: `url(${images[active]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: fading ? 0 : 1,
-          transition: "opacity 0.3s ease",
+          aspectRatio: "3/2",
+          overflow: "hidden",
         }}
-      />
+      >
+        <img
+          src={images[active]}
+          alt={`${name} foto ${active + 1}`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            opacity: fading ? 0 : 1,
+            transition: "opacity 0.3s ease",
+            display: "block",
+          }}
+        />
+      </div>
       <div className="flex gap-2 mt-3">
         {images.map((img, i) => (
           <button

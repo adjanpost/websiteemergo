@@ -3,10 +3,8 @@
 import { useState, useEffect } from "react";
 
 const SLIDES = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85",
-  "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1800&q=85",
-  "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1800&q=85",
-  "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1800&q=85",
+  "/images/shelter-hero.jpg",
+  "/images/kennel-hero.jpg",
 ];
 
 const GRADIENT =

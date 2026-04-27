@@ -20,8 +20,7 @@ export const products: Product[] = [
     tagline: "Het klassieke buitenverblijf.",
     cardTagline:
       "Het klassieke buitenverblijf — architectonisch, geïsoleerd, tijdloos.",
-    overviewImage:
-      "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800&q=85",
+    overviewImage: "/images/kennel-hero.jpg",
     intro:
       "De EMERGO Kennel is ontworpen voor eigenaren die geen compromis willen sluiten. Volledig gesloten, optimaal geïsoleerd en gebouwd om decennialang mooi te blijven.",
     description: [
@@ -40,10 +39,10 @@ export const products: Product[] = [
       { label: "Levering", value: "4–6 weken, volledig gemonteerd" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=900&q=85",
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=900&q=85",
-      "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=900&q=85",
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&q=85",
+      "/images/kennel-hero.jpg",
+      "/images/kennel-1.jpg",
+      "/images/kennel-2.jpg",
+      "/images/kennel-3.jpg",
     ],
     quote: "Gebouwd voor comfort.\nOntworpen voor de tuin.",
   },
@@ -53,8 +52,7 @@ export const products: Product[] = [
     tagline: "Half open, volledig beschermd.",
     cardTagline:
       "Half open, volledig beschermd — voor de hond die van buiten houdt.",
-    overviewImage:
-      "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=800&q=85",
+    overviewImage: "/images/shelter-hero.jpg",
     intro:
       "De EMERGO Shelter is voor de hond die graag buiten is maar altijd een droge, warme plek wil hebben. Half open van voren, volledig beschermd aan de zijkanten en achterkant.",
     description: [
@@ -73,10 +71,10 @@ export const products: Product[] = [
       { label: "Levering", value: "4–6 weken, volledig gemonteerd" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=900&q=85",
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&q=85",
-      "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=900&q=85",
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=900&q=85",
+      "/images/shelter-hero.jpg",
+      "/images/shelter-1.jpg",
+      "/images/shelter-2.jpg",
+      "/images/shelter-3.jpg",
     ],
     quote: "Buiten zijn, maar altijd\neen thuis hebben.",
   },
