@@ -6,9 +6,10 @@ import Link from "next/link";
 interface OfferteButtonProps {
   href?: string;
   fullWidth?: boolean;
+  label?: string;
 }
 
-export function OfferteButton({ href = "/contact", fullWidth }: OfferteButtonProps) {
+export function OfferteButton({ href = "/contact", fullWidth, label = "Vraag offerte aan" }: OfferteButtonProps) {
   const [on, setOn] = useState(false);
 
   return (
@@ -37,7 +38,7 @@ export function OfferteButton({ href = "/contact", fullWidth }: OfferteButtonPro
           transition: "transform 0.5s ease",
         }}
       />
-      <span className="relative z-10">Vraag offerte aan</span>
+      <span className="relative z-10">{label}</span>
     </Link>
   );
 }

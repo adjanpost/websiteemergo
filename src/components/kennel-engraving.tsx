@@ -1,9 +1,3 @@
-/**
- * Gravure-stijl lijntekening — EMERGO Duo open shelter.
- * 3/4 perspectief: open voorkant recht, LINKERZIJDE zichtbaar (diepte gaat links-omhoog).
- * Gebaseerd op de echte productfoto: breed dakoversteksel, open front,
- * verticale houten planken, groen accentpaneel, breed terrasplatform.
- */
 export function KennelEngraving({
   className = "",
   color = "currentColor",
@@ -13,291 +7,194 @@ export function KennelEngraving({
   color?: string;
   opacity?: number;
 }) {
-  const sw  = 0.9;
-  const swH = 0.35;
-  const c   = color;
+  const c = color;
+  const sw = 1.0;   // hoofd lijndikte
+  const sh = 0.42;  // arcering
 
-  // ── Perspectief: diepte gaat naar links-omhoog ───────────────────
-  const dx = -68, dy = -38;   // links-zijde offset
+  // ── Voorwand ────────────────────────────────────────
+  const bx1 = 102, bx2 = 290, by1 = 150, by2 = 244;
+  const bW = bx2 - bx1;  // 188
+  const bH = by2 - by1;  // 94
 
-  // ── Voorvlak (open voorkant) ─────────────────────────────────────
-  const fx1 = 158, fy1 = 110;   // top-left
-  const fx2 = 378, fy2 = 110;   // top-right  (fy2 = fy1)
-  const fy3 = 210;               // bottom y
-  const fW  = fx2 - fx1;        // 220px breed
-  const postW = 14;
+  // ── Perspectief (rechterzijde zichtbaar) ────────────
+  const dx = 66, dy = -38;
 
-  // ── Dak ─────────────────────────────────────────────────────────
-  const rH   = 14;               // dakdikte
-  const rOvX = 24;               // oversteksel links/rechts
-  const rOvY = fy1 - rH;        // dakbovenkant (= 96)
+  // ── Puntdak ─────────────────────────────────────────
+  const apx = 196, apy = 72;           // daknoknok
+  const eL = 78,   eR = 312;           // dakoverstek links/rechts
+  const eY = by1;                       // dakvoet = bovenkant wand
+  const lipH = 11;                      // dak-lip dikte
 
-  // Dakblad bovenvlak (parallelogram, visible left+top):
-  const rFL = { x: fx1 - rOvX,      y: rOvY };            // front-left
-  const rFR = { x: fx2 + rOvX,      y: rOvY };            // front-right
-  const rBL = { x: fx1 - rOvX + dx, y: rOvY + dy };       // back-left  (= ~66, 58)
-  const rBR = { x: fx2 + rOvX + dx, y: rOvY + dy };       // back-right
+  // Achterste dakpunten (perspectief)
+  const apBx = apx + dx, apBy = apy + dy;    // achterste nok = (262, 34)
+  const eBRx = eR + dx,  eBRy = eY + dy;     // achterste overstek rechts = (378, 112)
 
-  // ── Binnenwand (zichtbaar door open voorkant, iets teruggelegen) ─
-  const bx1 = fx1 + dx * 0.95;   // ~93
-  const bx2 = fx2 + dx * 0.95;   // ~313
-  const by1 = fy1 + dy * 0.95;   // ~74
-  const by3 = fy3 + dy * 0.95;   // ~174
+  // ── Ingang (boog = rechthoek + halve cirkel) ────────
+  const ecx = 192, eaR = 32;                 // middelpunt x, straal
+  const eaTotal = 70;                        // totale hoogte ingang
+  const eaL = ecx - eaR, eaRx = ecx + eaR;  // links=160, rechts=224
+  const eaArchCy = by2 - eaTotal + eaR;      // middelpunt boog = 244-70+32 = 206
 
-  // ── Platform ────────────────────────────────────────────────────
-  const platH  = 13;
-  const platOv = 20;
-
-  // ── Linkerzijwand ────────────────────────────────────────────────
-  const sidePoints = `${fx1},${fy1} ${fx1+dx},${fy1+dy} ${fx1+dx},${fy3+dy} ${fx1},${fy3}`;
-
-  // ── Groene accentpaneel: achterste ~30% van zijwand ──────────────
-  const gT  = 0.68;                              // start op 68% van diepte
-  const gpx1 = fx1 + dx * gT;                   // ~111
-  const gpy1 = fy1 + dy * gT;                   // ~84
-  const gpx2 = fx1 + dx;                         // = 90
-  const gpy2 = fy1 + dy;                         // = 72
-  const greenSide = `${gpx1},${gpy1} ${gpx2},${gpy2} ${gpx2},${fy3+dy} ${gpx1},${fy3+dy*(gT/1)+(fy3-fy1)*(1-gT)}`;
-
-  void fW; void fy2;
+  // ── Helpers ─────────────────────────────────────────
+  const pts = (arr: number[][]) => arr.map(p => p.join(",")).join(" ");
 
   return (
     <svg
-      viewBox="0 0 420 255"
+      viewBox="0 0 400 268"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="EMERGO Duo shelter gravure"
+      aria-label="EMERGO kennel gravure"
       style={{ opacity }}
     >
-      <defs>
-        <clipPath id="eg2-rooftop">
-          <polygon points={`${rFL.x},${rFL.y} ${rFR.x},${rFR.y} ${rBR.x},${rBR.y} ${rBL.x},${rBL.y}`} />
-        </clipPath>
-        <clipPath id="eg2-side">
-          <polygon points={sidePoints} />
-        </clipPath>
-        <clipPath id="eg2-inner">
-          <rect x={fx1 + postW + 4} y={fy1} width={fx2 - fx1 - (postW + 4) * 2} height={fy3 - fy1} />
-        </clipPath>
-        <clipPath id="eg2-green">
-          <polygon points={greenSide} />
-        </clipPath>
-      </defs>
-
-      {/* ════════════════════════════════════════════════════════
-          1. LINKERZIJWAND (meest prominent in dit perspectief)
-      ════════════════════════════════════════════════════════ */}
-      <polygon points={sidePoints} fill="white" fillOpacity={0.04} stroke={c} strokeWidth={sw} />
-      {/* Verticale planken */}
-      <g clipPath="url(#eg2-side)">
-        {Array.from({ length: 11 }, (_, i) => {
-          const t  = (i + 1) / 12;
-          const x  = fx1 + dx * t;
-          const y0 = fy1 + dy * t;
-          const y1b = fy3 + dy * t;
-          return <line key={i} x1={x} y1={y0} x2={x} y2={y1b} stroke={c} strokeWidth={swH * 1.1} />;
-        })}
-        {/* Lichte diagonale hatching voor diepteschaduw */}
-        {Array.from({ length: 22 }, (_, i) => {
-          const step = 6;
-          const ofs  = i * step - 20;
-          const x1a  = fx1 + ofs;
-          const x2a  = fx1 + ofs + (fy3 - fy1);
-          const inX1 = Math.max(x1a, fx1 + dx);
-          const inX2 = Math.min(x2a, fx1);
-          if (inX1 >= inX2) return null;
-          return (
-            <line key={i}
-              x1={inX1} y1={inX1 < x1a ? fy1 + (x1a - inX1) : fy1}
-              x2={inX2} y2={inX2 > x2a ? fy3 - (inX2 - x2a) : fy3}
-              stroke={c} strokeWidth={swH * 0.55}
-            />
-          );
-        })}
-      </g>
-
-      {/* Groen accentpaneel — achterste deel van zijwand */}
-      <polygon points={greenSide} fill="white" fillOpacity={0.03} stroke={c} strokeWidth={sw * 0.7} />
-      <g clipPath="url(#eg2-green)">
-        {Array.from({ length: 12 }, (_, i) => {
-          const t  = gT + (i + 0.5) / 12 * (1 - gT);
-          const x  = fx1 + dx * t;
-          const y0 = fy1 + dy * t;
-          const y1b = fy3 + dy * t;
-          return <line key={i} x1={x} y1={y0} x2={x} y2={y1b} stroke={c} strokeWidth={swH * 2.2} />;
-        })}
-      </g>
-
-      {/* ════════════════════════════════════════════════════════
-          2. BINNENWAND — zichtbaar door open voorkant
-      ════════════════════════════════════════════════════════ */}
+      {/* ══ 1. RECHTERZIJWAND ══ */}
       <polygon
-        points={`${bx1},${by1} ${bx2},${by1} ${bx2},${by3} ${bx1},${by3}`}
-        fill="white" fillOpacity={0.05}
-        stroke={c} strokeWidth={swH}
+        points={pts([[bx2,by1],[bx2+dx,by1+dy],[bx2+dx,by2+dy],[bx2,by2]])}
+        fill={c} fillOpacity={0.05} stroke={c} strokeWidth={sw}
       />
-      {/* Planken */}
-      <g clipPath="url(#eg2-inner)">
-        {Array.from({ length: 14 }, (_, i) => {
-          const x = bx1 + 6 + (i + 1) * ((bx2 - bx1 - 12) / 15);
-          return <line key={i} x1={x} y1={by1} x2={x} y2={by3} stroke={c} strokeWidth={swH} />;
-        })}
-        {/* Schaduw binnenwand: diagonaal */}
-        {Array.from({ length: 18 }, (_, i) => {
-          const x = bx1 + i * 8 - 20;
-          const h = by3 - by1;
-          return <line key={i} x1={Math.max(x, bx1)} y1={x < bx1 ? by1 + (bx1 - x) : by1}
-            x2={Math.min(x + h, bx2)} y2={x + h > bx2 ? by3 - (x + h - bx2) : by3}
-            stroke={c} strokeWidth={swH * 0.5} />;
-        })}
-      </g>
-      {/* EMERGO label gegraveerd */}
-      <text x={bx1 + (bx2 - bx1) / 2 - 18} y={by1 + 17}
-        fontSize="6.5" letterSpacing="2.5" fill={c} opacity={0.5}
-        fontFamily="var(--font-sans), system-ui, sans-serif">EMERGO</text>
-
-      {/* ════════════════════════════════════════════════════════
-          3. DAKBLAD BOVENVLAK
-      ════════════════════════════════════════════════════════ */}
-      <polygon
-        points={`${rFL.x},${rFL.y} ${rFR.x},${rFR.y} ${rBR.x},${rBR.y} ${rBL.x},${rBL.y}`}
-        fill="white" fillOpacity={0.05}
-      />
-      <g clipPath="url(#eg2-rooftop)">
-        {Array.from({ length: 38 }, (_, i) => {
-          const step = 5;
-          const s = i * step - 60;
-          const H = rFL.y - rBL.y;
-          return (
-            <line key={i}
-              x1={rFL.x + s}          y1={rFL.y}
-              x2={rFL.x + s + H * 1.2} y2={rBL.y - 5}
-              stroke={c} strokeWidth={swH}
-            />
-          );
-        })}
-      </g>
-      <polygon
-        points={`${rFL.x},${rFL.y} ${rFR.x},${rFR.y} ${rBR.x},${rBR.y} ${rBL.x},${rBL.y}`}
-        stroke={c} strokeWidth={sw * 1.1} fill="none"
-      />
-
-      {/* ════════════════════════════════════════════════════════
-          4. DAKBLAD VOORKANT (dikke lip — meest zichtbaar)
-      ════════════════════════════════════════════════════════ */}
-      <polygon
-        points={`${rFL.x},${rFL.y} ${rFR.x},${rFR.y} ${rFR.x},${fy1} ${rFL.x},${fy1}`}
-        fill="white" stroke={c} strokeWidth={sw}
-      />
-      <line x1={rFL.x + 3} y1={rFL.y + 4} x2={rFR.x - 3} y2={rFL.y + 4}
-        stroke={c} strokeWidth={swH} />
-      <line x1={rFL.x + 3} y1={rFL.y + 8} x2={rFR.x - 3} y2={rFL.y + 8}
-        stroke={c} strokeWidth={swH * 0.6} />
-
-      {/* Dakblad linkerzijde (verbindt voorkant met achterkant, perspectief) */}
-      <polygon
-        points={`${rFL.x},${rFL.y} ${rBL.x},${rBL.y} ${rBL.x},${rBL.y + rH} ${rFL.x},${rFL.y + rH}`}
-        fill="white" fillOpacity={0.04} stroke={c} strokeWidth={sw}
-      />
-      {/* Hatching dakzijkant */}
-      {Array.from({ length: 7 }, (_, i) => {
-        const t = (i + 0.5) / 8;
-        const x = rFL.x + (rBL.x - rFL.x) * t;
-        const y = rFL.y + (rBL.y - rFL.y) * t;
-        return <line key={i} x1={x} y1={y} x2={x} y2={y + rH} stroke={c} strokeWidth={swH} />;
+      {/* Horizontale planken op zijwand */}
+      {[0.32, 0.65].map((t, i) => (
+        <line key={i}
+          x1={bx2}      y1={by1 + t * bH}
+          x2={bx2 + dx} y2={by1 + t * bH + dy}
+          stroke={c} strokeWidth={sh}
+        />
+      ))}
+      {/* Verticale arceringen zijwand */}
+      {Array.from({ length: 9 }, (_, i) => {
+        const t = (i + 1) / 10;
+        return (
+          <line key={i}
+            x1={bx2 + dx * t} y1={by1 + dy * t}
+            x2={bx2 + dx * t} y2={by2 + dy * t}
+            stroke={c} strokeWidth={sh * 0.45}
+          />
+        );
       })}
 
-      {/* ════════════════════════════════════════════════════════
-          5. HOEKBALKEN / PALEN
-      ════════════════════════════════════════════════════════ */}
-      {/* Linkerpaal */}
-      <rect x={fx1 + 2} y={fy1} width={postW} height={fy3 - fy1}
-        fill="white" stroke={c} strokeWidth={sw} />
-      {Array.from({ length: 5 }, (_, i) => (
-        <line key={i} x1={fx1 + 3} y1={fy1 + 10 + i * 18}
-          x2={fx1 + postW} y2={fy1 + 10 + i * 18}
-          stroke={c} strokeWidth={swH * 0.7} />
-      ))}
-
-      {/* Rechterpaal */}
-      <rect x={fx2 - postW - 2} y={fy1} width={postW} height={fy3 - fy1}
-        fill="white" stroke={c} strokeWidth={sw} />
-      {Array.from({ length: 5 }, (_, i) => (
-        <line key={i} x1={fx2 - postW} y1={fy1 + 10 + i * 18}
-          x2={fx2 - 3} y2={fy1 + 10 + i * 18}
-          stroke={c} strokeWidth={swH * 0.7} />
-      ))}
-
-      {/* ════════════════════════════════════════════════════════
-          6. TERRASPLATFORM
-      ════════════════════════════════════════════════════════ */}
-      {/* Voorzijde */}
-      <rect x={fx1 - platOv} y={fy3} width={fW + platOv * 2} height={platH}
-        fill="white" stroke={c} strokeWidth={sw} />
-      {/* Nerf op platform */}
-      {[0.3, 0.6].map((t) => (
-        <line key={t}
-          x1={fx1 - platOv + 4} y1={fy3 + platH * t}
-          x2={fx2 + platOv - 4} y2={fy3 + platH * t}
-          stroke={c} strokeWidth={swH * 0.6} />
-      ))}
-      {/* Linkerzijkant platform (perspectief) */}
+      {/* ══ 2. RECHTER DAKVLAK (bovenzijde) ══ */}
       <polygon
-        points={`
-          ${fx1 - platOv},${fy3}
-          ${fx1 - platOv + dx * 0.5},${fy3 + dy * 0.5}
-          ${fx1 - platOv + dx * 0.5},${fy3 + platH + dy * 0.5}
-          ${fx1 - platOv},${fy3 + platH}
-        `}
-        fill="white" fillOpacity={0.04} stroke={c} strokeWidth={sw}
+        points={pts([[eR,eY],[eBRx,eBRy],[apBx,apBy],[apx,apy]])}
+        fill={c} fillOpacity={0.07} stroke={c} strokeWidth={sw}
       />
-      {/* Hatching platformzijkant */}
-      {Array.from({ length: 6 }, (_, i) => {
-        const t = (i + 0.5) / 7;
-        const x = fx1 - platOv + dx * 0.5 * t;
-        const y = fy3 + dy * 0.5 * t;
-        return <line key={i} x1={x} y1={y} x2={x} y2={y + platH} stroke={c} strokeWidth={swH} />;
+      {/* Dagtextuur-arcering */}
+      {Array.from({ length: 9 }, (_, i) => {
+        const t = (i + 1) / 10;
+        const x1a = eR   + (apx   - eR)   * t;
+        const y1a = eY   + (apy   - eY)   * t;
+        const x2a = eBRx + (apBx  - eBRx) * t;
+        const y2a = eBRy + (apBy  - eBRy) * t;
+        return <line key={i} x1={x1a} y1={y1a} x2={x2a} y2={y2a} stroke={c} strokeWidth={sh * 0.45} />;
       })}
 
-      {/* ════════════════════════════════════════════════════════
-          7. POOTJES
-      ════════════════════════════════════════════════════════ */}
-      {[
-        fx1 - platOv + 8,
-        fx1 - platOv + 22,
-        fx2 + platOv - 22,
-        fx2 + platOv - 36,
-      ].map((x, i) => (
-        <rect key={i} x={x} y={fy3 + platH} width={10} height={9}
-          fill="white" stroke={c} strokeWidth={sw * 0.8} />
+      {/* Daknok achterkant */}
+      <line x1={apx} y1={apy} x2={apBx} y2={apBy} stroke={c} strokeWidth={sw * 1.4} />
+
+      {/* ══ 3. VOORWAND ══ */}
+      <rect
+        x={bx1} y={by1} width={bW} height={bH}
+        fill={c} fillOpacity={0.03} stroke={c} strokeWidth={sw}
+      />
+      {/* Horizontale planken op voorwand */}
+      {[0.28, 0.54, 0.78].map((t, i) => (
+        <line key={i}
+          x1={bx1 + 3} y1={by1 + t * bH}
+          x2={bx2 - 3} y2={by1 + t * bH}
+          stroke={c} strokeWidth={sh * 0.9}
+        />
       ))}
 
-      {/* ════════════════════════════════════════════════════════
-          8. KUSSEN / MATRAS
-      ════════════════════════════════════════════════════════ */}
-      <rect x={fx1 + postW + 20} y={fy3 - 4} width={95} height={10} rx={2.5}
-        fill="white" stroke={c} strokeWidth={swH * 1.3} />
-      {[0.33, 0.66].map((t) => (
-        <line key={t}
-          x1={fx1 + postW + 20 + t * 95} y1={fy3 - 4}
-          x2={fx1 + postW + 20 + t * 95} y2={fy3 + 6}
-          stroke={c} strokeWidth={swH * 0.8} />
+      {/* ══ 4. INGANGSBOOG ══ */}
+      <path
+        d={`M ${eaL} ${by2} L ${eaL} ${eaArchCy} A ${eaR} ${eaR} 0 0 1 ${eaRx} ${eaArchCy} L ${eaRx} ${by2}`}
+        fill={c} fillOpacity={0.12}
+        stroke={c} strokeWidth={sw * 1.15}
+      />
+      {/* Dieptearcering in ingang */}
+      {Array.from({ length: 5 }, (_, i) => {
+        const t = (i + 1) / 6;
+        const iy = eaArchCy + (by2 - eaArchCy) * t;
+        const iW = eaR * 2 * (1 - t * 0.25);
+        return (
+          <line key={i}
+            x1={ecx - iW / 2} y1={iy}
+            x2={ecx + iW / 2} y2={iy}
+            stroke={c} strokeWidth={sh * 0.6} opacity={0.5 + t * 0.3}
+          />
+        );
+      })}
+
+      {/* ══ 5. LINKER DAKHELLING (frontale driehoek) ══ */}
+      <polygon
+        points={pts([[eL,eY],[apx,apy],[bx1,by1]])}
+        fill={c} fillOpacity={0.03} stroke={c} strokeWidth={sw}
+      />
+      {/* Arceringen linker helling */}
+      {Array.from({ length: 5 }, (_, i) => {
+        const t = (i + 1) / 6;
+        const sx = eL + (apx - eL) * t;
+        const sy = eY + (apy - eY) * t;
+        const ex2 = bx1 + (apx - bx1) * t;
+        return <line key={i} x1={sx} y1={sy} x2={ex2} y2={by1} stroke={c} strokeWidth={sh * 0.45} />;
+      })}
+
+      {/* ══ 6. RECHTER DAKHELLING (frontale driehoek) ══ */}
+      <polygon
+        points={pts([[bx2,by1],[apx,apy],[eR,eY]])}
+        fill={c} fillOpacity={0.025} stroke={c} strokeWidth={sw}
+      />
+      {Array.from({ length: 5 }, (_, i) => {
+        const t = (i + 1) / 6;
+        const sx = eR  + (apx - eR)  * t;
+        const sy = eY  + (apy - eY)  * t;
+        const ex2 = bx2 - (bx2 - apx) * t;
+        return <line key={i} x1={sx} y1={sy} x2={ex2} y2={by1} stroke={c} strokeWidth={sh * 0.4} />;
+      })}
+
+      {/* ══ 7. DAK-LIP (voorkant) ══ */}
+      <rect
+        x={eL} y={eY} width={eR - eL} height={lipH}
+        fill={c} fillOpacity={0.09} stroke={c} strokeWidth={sw}
+      />
+      {/* Dak-lip rechterzijde (perspectief) */}
+      <polygon
+        points={pts([[eR,eY],[eBRx,eBRy],[eBRx,eBRy+lipH],[eR,eY+lipH]])}
+        fill={c} fillOpacity={0.05} stroke={c} strokeWidth={sw}
+      />
+
+      {/* ══ 8. NAAMPLAATJE BOVEN INGANG ══ */}
+      <rect
+        x={ecx - 26} y={eaArchCy - eaR - 20} width={52} height={13}
+        fill={c} fillOpacity={0.07} stroke={c} strokeWidth={sh * 1.1}
+      />
+      <text
+        x={ecx - 17} y={eaArchCy - eaR - 10}
+        fontSize="5.5" letterSpacing="2"
+        fill={c} opacity={0.45}
+        fontFamily="var(--font-sans), system-ui, sans-serif"
+      >
+        EMERGO
+      </text>
+
+      {/* ══ 9. POOTJES ══ */}
+      {[bx1 + 10, bx1 + 24, bx2 - 26, bx2 - 12].map((x, i) => (
+        <rect key={i}
+          x={x} y={by2} width={12} height={9}
+          fill={c} fillOpacity={0.07} stroke={c} strokeWidth={sw * 0.75}
+        />
       ))}
 
-      {/* ════════════════════════════════════════════════════════
-          9. GRONDLIJN + SLAGSCHADUW
-      ════════════════════════════════════════════════════════ */}
+      {/* ══ 10. GRONDLIJN + SLAGSCHADUW ══ */}
       <line
-        x1={fx1 + dx * 0.5 - 10} y1={fy3 + platH + 9}
-        x2={fx2 + platOv + 10}   y2={fy3 + platH + 9}
+        x1={eL - 8} y1={by2 + 9}
+        x2={bx2 + dx + 8} y2={by2 + 9}
         stroke={c} strokeWidth={sw}
       />
       {[1, 2, 3, 4, 5].map((i) => (
         <line key={i}
-          x1={fx1 + dx * 0.5 - 8 + i * 5} y1={fy3 + platH + 9 + i * 1.6}
-          x2={fx2 + platOv + 6 - i * 5}    y2={fy3 + platH + 9 + i * 1.6}
-          stroke={c} strokeWidth={swH * (1.1 - i * 0.15)} opacity={1 - i * 0.15}
+          x1={eL - 5 + i * 5}       y1={by2 + 9 + i * 1.6}
+          x2={bx2 + dx + 3 - i * 5} y2={by2 + 9 + i * 1.6}
+          stroke={c} strokeWidth={sh * (1.1 - i * 0.15)} opacity={1 - i * 0.18}
         />
       ))}
     </svg>

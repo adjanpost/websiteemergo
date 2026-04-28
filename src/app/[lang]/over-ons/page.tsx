@@ -148,7 +148,107 @@ export default function OverOnsPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          3. ONZE OVERTUIGINGEN
+          3. DE NAAM EMERGO
+      ══════════════════════════════════════════ */}
+      <section className="py-36 md:py-48" style={{ backgroundColor: "oklch(0.96 0.005 80)" }}>
+        <div className="max-w-screen-xl mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-28 items-center">
+
+            {/* Foto met goud kader */}
+            <div className="relative order-2 md:order-1" style={{ paddingRight: "1.2rem", paddingBottom: "1.2rem" }}>
+              <div
+                className="absolute bottom-0 right-0 pointer-events-none"
+                aria-hidden
+                style={{ top: "1.2rem", left: "1.2rem", border: "1px solid #c4956a", zIndex: 0 }}
+              />
+              {/* Vervang onderstaande URL door je eigen foto van het Zeeuwse wapen of een passend beeld */}
+              <div
+                className="relative z-10 aspect-[4/3]"
+                style={{
+                  backgroundImage: "url(/images/zeeland-naam.jpg)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundColor: "#1a2e1a",
+                }}
+              >
+                {/* Tijdelijke fallback als foto ontbreekt */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <p
+                    className="font-light italic text-white/30 text-center"
+                    style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.4rem, 3vw, 2.2rem)" }}
+                  >
+                    Luctor et Emergo
+                  </p>
+                  <div style={{ width: 40, height: 1, backgroundColor: "#c4956a" }} />
+                  <p
+                    className="text-[10px] tracking-[0.3em] uppercase text-white/20"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    Zeeland
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tekst */}
+            <div className="order-1 md:order-2">
+              <p
+                className="text-[10px] tracking-[0.4em] uppercase mb-4"
+                style={{ fontFamily: "var(--font-sans)", color: "#c4956a" }}
+              >
+                De naam
+              </p>
+              <h2
+                className="font-light leading-none mb-3"
+                style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}
+              >
+                EMERGO
+              </h2>
+              <p
+                className="font-light italic mb-10"
+                style={{ fontFamily: "var(--font-serif)", fontSize: "1.1rem", color: "#c4956a" }}
+              >
+                Luctor et Emergo
+              </p>
+              <div
+                className="space-y-5 text-sm font-light leading-relaxed text-muted-foreground"
+                style={{ fontFamily: "var(--font-sans)", maxWidth: "52ch" }}
+              >
+                <p>
+                  EMERGO is meer dan een merknaam — het is een statement. De naam is ontleend aan het
+                  Zeeuwse provinciewapen, waarop de spreuk{" "}
+                  <em className="italic" style={{ fontFamily: "var(--font-serif)" }}>Luctor et Emergo</em>{" "}
+                  prijkt. Deze Latijnse uitdrukking —{" "}
+                  <em className="italic" style={{ fontFamily: "var(--font-serif)" }}>ik worstel en kom boven</em>{" "}
+                  — verwijst naar de eeuwenlange strijd van Zeeland tegen het water, en de veerkracht
+                  van een volk dat zich telkens weer wist te herstellen.
+                </p>
+                <p>
+                  Het woord EMERGO —{" "}
+                  <em className="italic" style={{ fontFamily: "var(--font-serif)" }}>ik kom boven</em>{" "}
+                  — raakte de oprichter direct. Opgegroeid in Zeeland kent hij die mentaliteit van
+                  kinds af aan: doorzetten, kwaliteit leveren, en je onderscheiden. Die waarden zijn
+                  precies wat EMERGO als merk uitdraagt.
+                </p>
+                <p>
+                  Een luxe buitenmerk dat zich wil optillen boven het gewone. Dat niet buigt voor
+                  compromissen in materiaal of ontwerp. Dat boven de massa uitstijgt — net zoals
+                  Zeeland dat al eeuwen doet.
+                </p>
+                <p>
+                  De naam draagt dus twee verhalen tegelijk: een persoonlijke herkomst en een
+                  merkbelofte. EMERGO is gemaakt om op te vallen, om te blijven, en om te groeien —
+                  in Nederland en ver daarbuiten.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          4. ONZE OVERTUIGINGEN
       ══════════════════════════════════════════ */}
       <section
         className="py-36 md:py-48"

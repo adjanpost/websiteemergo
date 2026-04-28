@@ -1,0 +1,105 @@
+{
+  "common": {
+    "madeInEurope": "Fabriqué à la main en Europe",
+    "requestQuote": "Demander un devis"
+  },
+  "nav": {
+    "products": "Produits",
+    "materials": "Matériaux",
+    "planner": "Planificateur",
+    "about": "À propos d'EMERGO",
+    "contact": "Contact",
+    "quote": "Devis",
+    "discover": "Découvrir la collection"
+  },
+  "home": {
+    "heroEyebrow": "Fabriqué à la main en Europe",
+    "heroLine1": "Fabriqué",
+    "heroLine2": "pour votre",
+    "heroLine3": "chien.",
+    "heroCta": "Découvrir la collection",
+    "introLabel": "Pourquoi EMERGO",
+    "introWord": "Caractère.",
+    "introSub": "Un habitat qui embellit votre jardin et protège votre chien.",
+    "introBody": "EMERGO allie savoir-faire artisanal et design intemporel. Chaque habitat est fabriqué sur mesure — pour votre chien, votre jardin, votre goût.",
+    "collectionLabel": "Collection 2025",
+    "collectionHeading1": "nos",
+    "collectionHeading2": "Habitats",
+    "collectionViewAll": "Tout voir",
+    "kennelSub": "L'habitat extérieur classique",
+    "shelterSub": "Où jardin et habitat se rencontrent",
+    "craftLabel": "Savoir-faire",
+    "craftHeading1": "Éternellement",
+    "craftHeading2": "bien conçu.",
+    "craftBody": "Nous sélectionnons uniquement le meilleur bois certifié FSC. Chaque assemblage est posé à la main, chaque surface soigneusement finie. Le résultat est un habitat qui reste beau pendant des décennies.",
+    "craftLink": "Notre histoire",
+    "mat01Title": "Bois certifié FSC",
+    "mat01Text": "Abattu de manière responsable, toujours traçable. Nous travaillons exclusivement avec des fournisseurs certifiés.",
+    "mat02Title": "Fait sur mesure",
+    "mat02Text": "Chaque taille, chaque couleur, chaque détail. Adapté à votre chien, votre jardin et vos souhaits personnels.",
+    "mat03Title": "Garantie 10 ans",
+    "mat03Text": "Sur la construction et la finition. Toujours. Nous défendons chaque habitat que nous fabriquons.",
+    "customLabel": "Sur mesure",
+    "customHeading1": "votre chien,",
+    "customHeading2": "Votre style.",
+    "customBody": "Des dimensions à la couleur de finition — tout est décidé avec vous. Pas un article de catalogue, mais un habitat qui correspond exactement à votre situation.",
+    "customLink": "Commencer votre demande",
+    "customersLabel": "Dans votre jardin",
+    "customersHeading1": "vu chez",
+    "customersHeading2": "Clients.",
+    "quoteText": "Notre habitat EMERGO est absolument magnifique. Rex l'adore et il s'intègre parfaitement dans notre jardin.",
+    "quoteAuthor": "Marieke van den Berg — Amsterdam",
+    "ctaLabel": "Intéressé ?",
+    "ctaHeading1": "laissez-nous concevoir le",
+    "ctaHeading2": "parfait habitat.",
+    "ctaButton": "Demander un devis"
+  },
+  "products": {
+    "heroEyebrow": "Fabriqué à la main aux Pays-Bas",
+    "heroHeading1": "Deux produits.",
+    "heroHeading2": "Un standard.",
+    "heroBody": "L'EMERGO Kennel et le Shelter sont chacun conçus à partir de la même conviction — un habitat extérieur doit être beau, durable et durer toute une vie.",
+    "viewProduct": "Voir le produit",
+    "compareWood": "Bois massif européen",
+    "compareWarranty": "Garantie 10 ans",
+    "compareCustom": "Disponible sur mesure",
+    "configLabel": "Trouvez votre taille",
+    "configHeading1": "Quel modèle convient",
+    "configHeading2": "à votre situation ?",
+    "configBody": "Entrez la largeur et la profondeur souhaitées. Nous affichons immédiatement les modèles correspondants de notre collection.",
+    "ctaHeading": "Savez-vous déjà ce que vous cherchez ?",
+    "ctaSub": "Ou encore hésitant ? Nous sommes heureux de vous aider.",
+    "ctaQuote": "Demander un devis",
+    "ctaContact": "Nous contacter"
+  },
+  "productData": {
+    "kennel": {
+      "tagline": "L'habitat extérieur classique.",
+      "cardTagline": "L'habitat extérieur classique — architectural, isolé, intemporel."
+    },
+    "shelter": {
+      "tagline": "Où jardin et habitat se rencontrent.",
+      "cardTagline": "Un habitat extérieur architectural qui s'intègre dans le jardin."
+    }
+  },
+  "footer": {
+    "tagline": "Habitats extérieurs premium pour chiens. Fabriqués avec savoir-faire.",
+    "origin": "Conçu & fabriqué en Europe",
+    "collectionLabel": "Collection",
+    "companyLabel": "Entreprise",
+    "contactLabel": "Contact",
+    "aboutUs": "À propos",
+    "privacy": "Confidentialité",
+    "terms": "CGV",
+    "copyright": "Tous droits réservés.",
+    "tagline2": "Habitats Extérieurs Premium — Pays-Bas"
+  },
+  "productDetail": {
+    "directContact": "Ou nous contacter directement",
+    "responseTime": "Nous répondons dans 1 jour ouvrable · Sans engagement",
+    "materialsLabel": "Matériaux & construction",
+    "materialsHeading": "Chaque détail compte",
+    "alsoView": "Voir aussi",
+    "discover": "Découvrir le"
+  }
+}

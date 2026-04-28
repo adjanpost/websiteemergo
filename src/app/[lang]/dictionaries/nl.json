@@ -1,0 +1,105 @@
+{
+  "common": {
+    "madeInEurope": "Handgemaakt in Europa",
+    "requestQuote": "Vraag offerte aan"
+  },
+  "nav": {
+    "products": "Producten",
+    "materials": "Materialen",
+    "planner": "Planner",
+    "about": "Over EMERGO",
+    "contact": "Contact",
+    "quote": "Offerte",
+    "discover": "Ontdek collectie"
+  },
+  "home": {
+    "heroEyebrow": "Handgemaakt in Europa",
+    "heroLine1": "Gemaakt",
+    "heroLine2": "voor uw",
+    "heroLine3": "hond.",
+    "heroCta": "Ontdek de collectie",
+    "introLabel": "Waarom EMERGO",
+    "introWord": "Karakter.",
+    "introSub": "Een verblijf dat uw tuin siert en uw hond beschermt.",
+    "introBody": "EMERGO combineert ambachtelijk vakmanschap met tijdloos design. Elk verblijf wordt op maat gemaakt — voor uw hond, uw tuin, uw smaak.",
+    "collectionLabel": "Collectie 2025",
+    "collectionHeading1": "onze",
+    "collectionHeading2": "Verblijven",
+    "collectionViewAll": "Alles bekijken",
+    "kennelSub": "Het klassieke buitenverblijf",
+    "shelterSub": "Waar tuin en verblijf samenkomen",
+    "craftLabel": "Vakmanschap",
+    "craftHeading1": "Eeuwig",
+    "craftHeading2": "mooi gemaakt.",
+    "craftBody": "Wij selecteren alleen het beste FSC-gecertificeerde hout. Elke verbinding is met de hand gezet, elk oppervlak met zorg afgewerkt. Het resultaat is een verblijf dat decennialang mooi blijft.",
+    "craftLink": "Over ons verhaal",
+    "mat01Title": "FSC-gecertificeerd hout",
+    "mat01Text": "Verantwoord gekapt, altijd traceerbaar. Wij werken uitsluitend met gecertificeerde leveranciers.",
+    "mat02Title": "Op maat gemaakt",
+    "mat02Text": "Elke maat, elke kleur, elk detail. Afgestemd op uw hond, uw tuin en uw persoonlijke wensen.",
+    "mat03Title": "10 jaar garantie",
+    "mat03Text": "Op constructie en afwerking. Altijd. Wij staan achter elk verblijf dat wij maken.",
+    "customLabel": "Op maat",
+    "customHeading1": "uw hond,",
+    "customHeading2": "Uw stijl.",
+    "customBody": "Van de afmetingen tot de kleur van de afwerking — alles wordt samen met u bepaald. Geen catalogusstuk, maar een verblijf dat precies past bij uw situatie.",
+    "customLink": "Start uw aanvraag",
+    "customersLabel": "In uw tuin",
+    "customersHeading1": "gezien bij",
+    "customersHeading2": "Klanten.",
+    "quoteText": "Ons EMERGO verblijf is absoluut prachtig. Rex is er dol op en het past perfect bij onze tuin.",
+    "quoteAuthor": "Marieke van den Berg — Amsterdam",
+    "ctaLabel": "Interesse?",
+    "ctaHeading1": "laat ons het perfecte verblijf",
+    "ctaHeading2": "Ontwerpen.",
+    "ctaButton": "Offerte aanvragen"
+  },
+  "products": {
+    "heroEyebrow": "Handgemaakt in Nederland",
+    "heroHeading1": "Twee producten.",
+    "heroHeading2": "Één standaard.",
+    "heroBody": "De EMERGO Kennel en Shelter zijn elk ontworpen vanuit dezelfde overtuiging — een buitenverblijf moet mooi zijn, duurzaam zijn, en een leven meegaan.",
+    "viewProduct": "Bekijk product",
+    "compareWood": "Massief Europees hout",
+    "compareWarranty": "10 jaar garantie",
+    "compareCustom": "Op maat leverbaar",
+    "configLabel": "Vind uw maat",
+    "configHeading1": "Welk model past",
+    "configHeading2": "bij uw situatie?",
+    "configBody": "Voer de gewenste breedte en diepte in. Wij tonen direct de passende modellen uit onze collectie.",
+    "ctaHeading": "Weet u al wat u zoekt?",
+    "ctaSub": "Of twijfelt u nog? Wij denken graag met u mee.",
+    "ctaQuote": "Offerte aanvragen",
+    "ctaContact": "Neem contact op"
+  },
+  "productData": {
+    "kennel": {
+      "tagline": "Het klassieke buitenverblijf.",
+      "cardTagline": "Het klassieke buitenverblijf — architectonisch, geïsoleerd, tijdloos."
+    },
+    "shelter": {
+      "tagline": "Waar tuin en verblijf samenkomen.",
+      "cardTagline": "Een architectonisch buitenverblijf dat opgaat in de tuin."
+    }
+  },
+  "footer": {
+    "tagline": "Premium buitenverblijven voor honden. Gemaakt met vakmanschap.",
+    "origin": "Ontworpen & gemaakt in Europa",
+    "collectionLabel": "Collectie",
+    "companyLabel": "Bedrijf",
+    "contactLabel": "Contact",
+    "aboutUs": "Over ons",
+    "privacy": "Privacy",
+    "terms": "Voorwaarden",
+    "copyright": "Alle rechten voorbehouden.",
+    "tagline2": "Premium Buitenverblijven — Nederland"
+  },
+  "productDetail": {
+    "directContact": "Of neem direct contact op",
+    "responseTime": "Wij reageren binnen 1 werkdag · Vrijblijvend advies",
+    "materialsLabel": "Materialen & constructie",
+    "materialsHeading": "Elk detail telt",
+    "alsoView": "Bekijk ook",
+    "discover": "Ontdek de"
+  }
+}

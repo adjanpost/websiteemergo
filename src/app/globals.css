@@ -161,7 +161,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #c4956a;
+  color: rgba(255,255,255,0.8);
 }
 .product-card-cta::after {
   content: "";

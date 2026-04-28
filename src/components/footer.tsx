@@ -1,7 +1,24 @@
 import Link from "next/link";
 import { EUFlagMicro } from "@/components/EUFlagMicro";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 
-export function Footer() {
+export async function Footer({ lang = "nl" }: { lang?: string }) {
+  const locale = hasLocale(lang) ? lang : "nl";
+  const d = await getDictionary(locale);
+  const f = d.footer;
+
+  const collection = [
+    { href: `/${locale}/producten/kennel`, label: "EMERGO Kennel" },
+    { href: `/${locale}/producten/shelter`, label: "EMERGO Shelter" },
+  ];
+
+  const company = [
+    { href: `/${locale}/over-ons`, label: f.aboutUs },
+    { href: `/${locale}/contact`, label: f.contactLabel },
+    { href: `/${locale}/privacy`, label: f.privacy },
+    { href: `/${locale}/voorwaarden`, label: f.terms },
+  ];
+
   return (
     <footer className="bg-stone-50 border-t border-border" data-cursor="dark">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-16 md:py-20">
@@ -12,27 +29,27 @@ export function Footer() {
               EMERGO
             </span>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-[180px]">
-              Premium buitenverblijven voor honden. Gemaakt met vakmanschap.
+              {f.tagline}
             </p>
             <div className="footer-origin">
               <EUFlagMicro />
-              <span>Ontworpen &amp; gemaakt in Europa</span>
+              <span>{f.origin}</span>
             </div>
           </div>
 
           {/* Collectie */}
           <div>
             <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-5">
-              Collectie
+              {f.collectionLabel}
             </h3>
             <ul className="space-y-3">
-              {["EMERGO Solo", "EMERGO Duo", "EMERGO Suite"].map((item) => (
-                <li key={item}>
+              {collection.map((item) => (
+                <li key={item.href}>
                   <Link
-                    href="/producten"
+                    href={item.href}
                     className="text-xs text-foreground/70 hover:text-foreground transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -42,15 +59,10 @@ export function Footer() {
           {/* Bedrijf */}
           <div>
             <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-5">
-              Bedrijf
+              {f.companyLabel}
             </h3>
             <ul className="space-y-3">
-              {[
-                { href: "/over-ons", label: "Over ons" },
-                { href: "/contact", label: "Contact" },
-                { href: "/privacy", label: "Privacy" },
-                { href: "/voorwaarden", label: "Voorwaarden" },
-              ].map((item) => (
+              {company.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -66,7 +78,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-5">
-              Contact
+              {f.contactLabel}
             </h3>
             <ul className="space-y-3 text-xs text-foreground/70">
               <li>
@@ -86,10 +98,10 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-border">
           <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-            © {new Date().getFullYear()} EMERGO. Alle rechten voorbehouden.
+            © {new Date().getFullYear()} EMERGO. {f.copyright}
           </p>
           <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-            Premium Buitenverblijven — Nederland
+            {f.tagline2}
           </p>
         </div>
       </div>

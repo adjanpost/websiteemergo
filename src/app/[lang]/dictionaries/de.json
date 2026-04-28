@@ -1,0 +1,105 @@
+{
+  "common": {
+    "madeInEurope": "Handgefertigt in Europa",
+    "requestQuote": "Angebot anfragen"
+  },
+  "nav": {
+    "products": "Produkte",
+    "materials": "Materialien",
+    "planner": "Planer",
+    "about": "Über EMERGO",
+    "contact": "Kontakt",
+    "quote": "Angebot",
+    "discover": "Kollektion entdecken"
+  },
+  "home": {
+    "heroEyebrow": "Handgefertigt in Europa",
+    "heroLine1": "Gemacht",
+    "heroLine2": "für Ihren",
+    "heroLine3": "Hund.",
+    "heroCta": "Kollektion entdecken",
+    "introLabel": "Warum EMERGO",
+    "introWord": "Charakter.",
+    "introSub": "Ein Zuhause, das Ihren Garten ziert und Ihren Hund schützt.",
+    "introBody": "EMERGO verbindet handwerkliches Können mit zeitlosem Design. Jedes Zuhause wird maßgefertigt — für Ihren Hund, Ihren Garten, Ihren Geschmack.",
+    "collectionLabel": "Kollektion 2025",
+    "collectionHeading1": "unsere",
+    "collectionHeading2": "Unterkünfte",
+    "collectionViewAll": "Alle ansehen",
+    "kennelSub": "Das klassische Außengehäuse",
+    "shelterSub": "Wo Garten und Unterkunft zusammenkommen",
+    "craftLabel": "Handwerkskunst",
+    "craftHeading1": "Zeitlos",
+    "craftHeading2": "schön gemacht.",
+    "craftBody": "Wir wählen nur das beste FSC-zertifizierte Holz. Jede Verbindung ist von Hand gesetzt, jede Oberfläche sorgfältig bearbeitet. Das Ergebnis ist ein Zuhause, das jahrzehntelang schön bleibt.",
+    "craftLink": "Unsere Geschichte",
+    "mat01Title": "FSC-zertifiziertes Holz",
+    "mat01Text": "Verantwortungsvoll gefällt, immer rückverfolgbar. Wir arbeiten ausschließlich mit zertifizierten Lieferanten.",
+    "mat02Title": "Maßgefertigt",
+    "mat02Text": "Jede Größe, jede Farbe, jedes Detail. Abgestimmt auf Ihren Hund, Ihren Garten und Ihre persönlichen Wünsche.",
+    "mat03Title": "10 Jahre Garantie",
+    "mat03Text": "Auf Konstruktion und Verarbeitung. Immer. Wir stehen hinter jedem Zuhause, das wir bauen.",
+    "customLabel": "Maßanfertigung",
+    "customHeading1": "Ihr Hund,",
+    "customHeading2": "Ihr Stil.",
+    "customBody": "Von den Abmessungen bis zur Oberflächenfarbe — alles wird gemeinsam mit Ihnen festgelegt. Kein Katalogartikel, sondern ein Zuhause, das genau zu Ihrer Situation passt.",
+    "customLink": "Anfrage starten",
+    "customersLabel": "In Ihrem Garten",
+    "customersHeading1": "gesehen bei",
+    "customersHeading2": "Kunden.",
+    "quoteText": "Unser EMERGO Zuhause ist absolut wunderschön. Rex liebt es und es passt perfekt zu unserem Garten.",
+    "quoteAuthor": "Marieke van den Berg — Amsterdam",
+    "ctaLabel": "Interesse?",
+    "ctaHeading1": "lassen Sie uns das perfekte",
+    "ctaHeading2": "Zuhause entwerfen.",
+    "ctaButton": "Angebot anfragen"
+  },
+  "products": {
+    "heroEyebrow": "Handgefertigt in den Niederlanden",
+    "heroHeading1": "Zwei Produkte.",
+    "heroHeading2": "Ein Standard.",
+    "heroBody": "Der EMERGO Kennel und Shelter wurden jeweils aus derselben Überzeugung heraus entworfen — eine Außenunterkunft muss schön sein, langlebig sein und ein Leben lang halten.",
+    "viewProduct": "Produkt ansehen",
+    "compareWood": "Massives europäisches Holz",
+    "compareWarranty": "10 Jahre Garantie",
+    "compareCustom": "Auf Maß lieferbar",
+    "configLabel": "Finden Sie Ihre Größe",
+    "configHeading1": "Welches Modell passt",
+    "configHeading2": "zu Ihrer Situation?",
+    "configBody": "Geben Sie Breite und Tiefe ein. Wir zeigen sofort die passenden Modelle aus unserer Kollektion.",
+    "ctaHeading": "Wissen Sie schon, was Sie suchen?",
+    "ctaSub": "Oder noch unsicher? Wir helfen Ihnen gerne.",
+    "ctaQuote": "Angebot anfragen",
+    "ctaContact": "Kontakt aufnehmen"
+  },
+  "productData": {
+    "kennel": {
+      "tagline": "Das klassische Außengehäuse.",
+      "cardTagline": "Das klassische Außengehäuse — architektonisch, isoliert, zeitlos."
+    },
+    "shelter": {
+      "tagline": "Wo Garten und Unterkunft zusammenkommen.",
+      "cardTagline": "Eine architektonische Außenunterkunft, die im Garten aufgeht."
+    }
+  },
+  "footer": {
+    "tagline": "Premium Außenunterkünfte für Hunde. Mit Handwerkskunst gefertigt.",
+    "origin": "Entworfen & hergestellt in Europa",
+    "collectionLabel": "Kollektion",
+    "companyLabel": "Unternehmen",
+    "contactLabel": "Kontakt",
+    "aboutUs": "Über uns",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "copyright": "Alle Rechte vorbehalten.",
+    "tagline2": "Premium Außenunterkünfte — Niederlande"
+  },
+  "productDetail": {
+    "directContact": "Oder direkt Kontakt aufnehmen",
+    "responseTime": "Wir antworten innerhalb 1 Werktages · Unverbindlich",
+    "materialsLabel": "Materialien & Konstruktion",
+    "materialsHeading": "Jedes Detail zählt",
+    "alsoView": "Auch ansehen",
+    "discover": "Entdecken Sie den"
+  }
+}

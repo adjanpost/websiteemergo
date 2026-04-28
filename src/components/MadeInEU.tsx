@@ -3,9 +3,10 @@ import React from "react";
 interface MadeInEUProps {
   variant?: "card" | "detail";
   style?: React.CSSProperties;
+  label?: string;
 }
 
-export function MadeInEU({ variant = "card", style }: MadeInEUProps) {
+export function MadeInEU({ variant = "card", style, label = "Handgemaakt in Europa" }: MadeInEUProps) {
   return (
     <span
       style={{
@@ -21,7 +22,7 @@ export function MadeInEU({ variant = "card", style }: MadeInEUProps) {
         ...style,
       }}
     >
-      Handgemaakt in Europa
+      {label}
     </span>
   );
 }

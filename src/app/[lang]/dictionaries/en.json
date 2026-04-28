@@ -1,0 +1,105 @@
+{
+  "common": {
+    "madeInEurope": "Handcrafted in Europe",
+    "requestQuote": "Request a quote"
+  },
+  "nav": {
+    "products": "Products",
+    "materials": "Materials",
+    "planner": "Planner",
+    "about": "About EMERGO",
+    "contact": "Contact",
+    "quote": "Quote",
+    "discover": "Discover collection"
+  },
+  "home": {
+    "heroEyebrow": "Handcrafted in Europe",
+    "heroLine1": "Made",
+    "heroLine2": "for your",
+    "heroLine3": "dog.",
+    "heroCta": "Discover the collection",
+    "introLabel": "Why EMERGO",
+    "introWord": "Character.",
+    "introSub": "A home that adorns your garden and protects your dog.",
+    "introBody": "EMERGO combines artisan craftsmanship with timeless design. Every home is custom-made — for your dog, your garden, your taste.",
+    "collectionLabel": "Collection 2025",
+    "collectionHeading1": "our",
+    "collectionHeading2": "Homes",
+    "collectionViewAll": "View all",
+    "kennelSub": "The classic outdoor home",
+    "shelterSub": "Where garden and home meet",
+    "craftLabel": "Craftsmanship",
+    "craftHeading1": "Eternally",
+    "craftHeading2": "beautifully made.",
+    "craftBody": "We select only the finest FSC-certified timber. Every joint is hand-fitted, every surface carefully finished. The result is a home that remains beautiful for decades.",
+    "craftLink": "Our story",
+    "mat01Title": "FSC-certified timber",
+    "mat01Text": "Responsibly harvested, always traceable. We work exclusively with certified suppliers.",
+    "mat02Title": "Custom made",
+    "mat02Text": "Every size, every colour, every detail. Tailored to your dog, your garden, and your personal wishes.",
+    "mat03Title": "10-year guarantee",
+    "mat03Text": "On construction and finish. Always. We stand behind every home we make.",
+    "customLabel": "Custom",
+    "customHeading1": "your dog,",
+    "customHeading2": "Your style.",
+    "customBody": "From dimensions to finish colour — everything is decided together with you. Not a catalogue piece, but a home that fits your situation exactly.",
+    "customLink": "Start your request",
+    "customersLabel": "In your garden",
+    "customersHeading1": "seen at",
+    "customersHeading2": "Clients.",
+    "quoteText": "Our EMERGO home is absolutely beautiful. Rex loves it and it fits perfectly with our garden.",
+    "quoteAuthor": "Marieke van den Berg — Amsterdam",
+    "ctaLabel": "Interested?",
+    "ctaHeading1": "let us design the perfect",
+    "ctaHeading2": "Home.",
+    "ctaButton": "Request a quote"
+  },
+  "products": {
+    "heroEyebrow": "Handcrafted in the Netherlands",
+    "heroHeading1": "Two products.",
+    "heroHeading2": "One standard.",
+    "heroBody": "The EMERGO Kennel and Shelter are each designed from the same conviction — an outdoor home must be beautiful, durable, and last a lifetime.",
+    "viewProduct": "View product",
+    "compareWood": "Solid European timber",
+    "compareWarranty": "10-year guarantee",
+    "compareCustom": "Available custom",
+    "configLabel": "Find your size",
+    "configHeading1": "Which model fits",
+    "configHeading2": "your situation?",
+    "configBody": "Enter your desired width and depth. We'll immediately show the matching models from our collection.",
+    "ctaHeading": "Do you know what you're looking for?",
+    "ctaSub": "Or still unsure? We're happy to help.",
+    "ctaQuote": "Request a quote",
+    "ctaContact": "Get in touch"
+  },
+  "productData": {
+    "kennel": {
+      "tagline": "The classic outdoor home.",
+      "cardTagline": "The classic outdoor home — architectural, insulated, timeless."
+    },
+    "shelter": {
+      "tagline": "Where garden and home meet.",
+      "cardTagline": "An architectural outdoor home that blends into the garden."
+    }
+  },
+  "footer": {
+    "tagline": "Premium outdoor homes for dogs. Made with craftsmanship.",
+    "origin": "Designed & made in Europe",
+    "collectionLabel": "Collection",
+    "companyLabel": "Company",
+    "contactLabel": "Contact",
+    "aboutUs": "About us",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "copyright": "All rights reserved.",
+    "tagline2": "Premium Outdoor Homes — Netherlands"
+  },
+  "productDetail": {
+    "directContact": "Or contact us directly",
+    "responseTime": "We respond within 1 business day · No obligation",
+    "materialsLabel": "Materials & construction",
+    "materialsHeading": "Every detail matters",
+    "alsoView": "Also see",
+    "discover": "Discover the"
+  }
+}

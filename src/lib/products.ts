@@ -49,9 +49,9 @@ export const products: Product[] = [
   {
     slug: "shelter",
     name: "EMERGO Shelter",
-    tagline: "Half open, volledig beschermd.",
+    tagline: "Waar tuin en verblijf samenkomen.",
     cardTagline:
-      "Half open, volledig beschermd — voor de hond die van buiten houdt.",
+      "Een architectonisch buitenverblijf dat opgaat in de tuin.",
     overviewImage: "/images/shelter-hero.jpg",
     intro:
       "De EMERGO Shelter is voor de hond die graag buiten is maar altijd een droge, warme plek wil hebben. Half open van voren, volledig beschermd aan de zijkanten en achterkant.",
