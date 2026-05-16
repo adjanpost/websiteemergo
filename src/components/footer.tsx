@@ -8,12 +8,13 @@ export async function Footer({ lang = "nl" }: { lang?: string }) {
   const f = d.footer;
 
   const collection = [
-    { href: `/${locale}/producten/kennel`, label: "EMERGO Kennel" },
-    { href: `/${locale}/producten/shelter`, label: "EMERGO Shelter" },
+    { href: `/${locale}/producten/kennel`, label: "EMERGO Cortile" },
+    { href: `/${locale}/producten/shelter`, label: "EMERGO Belvedere" },
   ];
 
   const company = [
     { href: `/${locale}/over-ons`, label: f.aboutUs },
+    { href: `/${locale}/verkooppunten`, label: f.dealers },
     { href: `/${locale}/contact`, label: f.contactLabel },
     { href: `/${locale}/privacy`, label: f.privacy },
     { href: `/${locale}/voorwaarden`, label: f.terms },

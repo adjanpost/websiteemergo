@@ -141,7 +141,7 @@ export default function MaterialenPage() {
                 className="relative z-10 aspect-[4/5]"
                 style={{
                   backgroundImage:
-                    "url(https://images.unsplash.com/photo-1520038410233-7141be7e6f97?w=800&q=85)",
+                    "url(/images/materialen-hout.jpg.png)",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -246,7 +246,7 @@ export default function MaterialenPage() {
                   { label: "Applicatie", value: "Elektrostatisch poedercoat" },
                   { label: "Laagdikte", value: "60–80 micron" },
                   { label: "Baktemperatuur", value: "200 °C" },
-                  { label: "Finish", value: "Mat" },
+                  { label: "Finish", value: "Glans" },
                 ].map((spec) => (
                   <div
                     key={spec.label}
@@ -274,7 +274,7 @@ export default function MaterialenPage() {
               className="aspect-[4/5]"
               style={{
                 backgroundImage:
-                  "url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85)",
+                  "url(/images/materialen-staal.jpg.png)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}

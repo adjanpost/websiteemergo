@@ -2,19 +2,20 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
 import { FillButton } from "@/components/fill-button";
 import { RevealWords } from "@/components/reveal-words";
-import { KennelEngraving } from "@/components/kennel-engraving";
 import { HeroSlideshow } from "@/components/hero-slideshow";
 import { BackgroundImage } from "@/components/background-image";
 import { EUFlagMicro } from "@/components/EUFlagMicro";
+import { NewsletterBanner } from "@/components/NewsletterBanner";
+import { FadeUp } from "@/components/fade-up";
 import { getDictionary, hasLocale } from "./dictionaries";
 import { notFound } from "next/navigation";
 
 const KLANTFOTOS = [
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=85",
-  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=85",
-  "https://images.unsplash.com/photo-1600573472550-8090733a21e0?w=800&q=85",
-  "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=85",
-  "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=85",
+  "/images/klant-1.jpg.png",
+  "/images/klant-2.jpg.png",
+  "/images/klant-3.jpg.png",
+  "/images/klant-4.jpg.png",
+  "/images/klant-5.jpg.png",
 ];
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
@@ -24,8 +25,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const h = d.home;
 
   const COLLECTION = [
-    { url: "/images/kennel-hero.jpg", naam: "EMERGO Kennel", sub: h.kennelSub, slug: "kennel" },
-    { url: "/images/shelter-hero.jpg", naam: "EMERGO Shelter", sub: h.shelterSub, slug: "shelter" },
+    { url: "/images/kennel-hero.png", naam: "EMERGO Cortile", sub: h.kennelSub, slug: "kennel" },
+    { url: "/images/shelter-hero.jpg.png", naam: "EMERGO Belvedere", sub: h.shelterSub, slug: "shelter" },
   ];
 
   const MATERIALS = [
@@ -40,41 +41,43 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           HERO
       ══════════════════════════════════════════ */}
       <HeroSlideshow>
-        <div className="absolute bottom-20 right-8 md:bottom-28 md:right-16 z-10 w-52 md:w-80 pointer-events-none select-none">
-          <KennelEngraving color="white" opacity={0.18} />
+        {/* Bottom-right label */}
+        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-14 z-10 pointer-events-none select-none flex items-center gap-2">
+          <EUFlagMicro />
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
+            Handgemaakt in Europa
+          </p>
         </div>
 
         <div className="relative z-10 w-full max-w-screen-xl mx-auto px-8 md:px-16 pb-20 md:pb-32">
-          <div
-            className="eyebrow mb-8 text-white/50"
-            style={{ fontFamily: "var(--font-sans)", fontSize: "0.6875rem", letterSpacing: "0.45em", textTransform: "uppercase" }}
-          >
-            <EUFlagMicro />
-            {h.heroEyebrow}
-          </div>
-
-          <div style={{ fontFamily: "var(--font-serif)", lineHeight: 0.88 }}>
-            <div className="text-white font-light text-[12vw] md:text-[8vw] tracking-tight block">
-              {h.heroLine1}
-            </div>
-            <div className="flex items-baseline gap-4 md:gap-6">
-              <span className="text-white/60 font-light italic text-[5vw] md:text-[3.5vw] tracking-wide">
+          {/* Text beperkt tot linkerkant */}
+          <div style={{ maxWidth: "clamp(280px, 45%, 560px)" }}>
+            <div style={{ fontFamily: "var(--font-serif)", lineHeight: 1, display: "flex", flexDirection: "column", gap: "0.1em" }}>
+              <span className="text-white font-light block" style={{ fontSize: "clamp(2.8rem, 8vw, 7rem)", letterSpacing: "-0.01em" }}>
+                {h.heroLine1}
+              </span>
+              <span className="text-white/60 font-light italic block" style={{ fontSize: "clamp(1.4rem, 3.5vw, 3.2rem)", letterSpacing: "0.01em" }}>
                 {h.heroLine2}
               </span>
-              <span className="text-white font-bold text-[14vw] md:text-[9vw] tracking-tight leading-none">
+              <span className="text-white font-bold block" style={{ fontSize: "clamp(3rem, 9vw, 8rem)", letterSpacing: "-0.02em", lineHeight: 0.9 }}>
                 {h.heroLine3}
               </span>
+              {h.heroLine3b && (
+                <span className="font-light italic text-white/60 block" style={{ fontSize: "clamp(1.2rem, 3vw, 2.6rem)", letterSpacing: "0.01em" }}>
+                  {h.heroLine3b}
+                </span>
+              )}
             </div>
-          </div>
 
-          <Link
-            href={`/${lang}/producten`}
-            className="inline-flex items-center gap-3 mt-14 text-[11px] tracking-[0.3em] uppercase text-white/70 border-b border-white/30 pb-1 hover:text-white hover:border-white transition-colors"
-            style={{ fontFamily: "var(--font-sans)" }}
-          >
-            {h.heroCta}
-            <ArrowRight className="h-3 w-3" />
-          </Link>
+            <Link
+              href={`/${lang}/producten`}
+              className="inline-flex items-center gap-3 mt-10 text-[11px] tracking-[0.3em] uppercase text-white/70 border-b border-white/30 pb-1 hover:text-white hover:border-white transition-colors"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              {h.heroCta}
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
         </div>
       </HeroSlideshow>
 
@@ -187,15 +190,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div
             className="relative aspect-[4/5] overflow-hidden"
             style={{
-              backgroundImage: "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=85)",
+              backgroundImage: "url(/images/huis-craft.jpg.png)",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute bottom-0 right-0 w-16 h-16">
-              <div className="absolute bottom-0 right-0 w-full h-1 bg-primary" />
-              <div className="absolute bottom-0 right-0 w-1 h-full bg-primary" />
-            </div>
           </div>
 
           <div>
@@ -227,24 +226,26 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="border-t border-b border-border overflow-hidden" style={{ backgroundColor: "oklch(0.97 0.01 152)" }}>
         <div className="grid grid-cols-1 md:grid-cols-5">
           <BackgroundImage
-            src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=800&q=85"
+            src="/images/materialen-band.jpg.png"
             className="md:col-span-2 min-h-[320px] md:min-h-0"
           />
           <div className="md:col-span-3 px-8 md:px-16 py-24 md:py-36">
             <div className="grid grid-cols-1 gap-14 max-w-xl">
-              {MATERIALS.map((item) => (
+              {MATERIALS.map((item, index) => (
                 <div key={item.nr}>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-6 h-px bg-primary" />
-                    <span className="text-[10px] text-primary tracking-[0.3em]" style={{ fontFamily: "var(--font-sans)" }}>
-                      {item.nr}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5" style={{ fontFamily: "var(--font-serif)" }}>
-                    {item.titel}
-                  </h3>
+                  <FadeUp delay={index * 120}>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-6 h-px bg-primary" />
+                      <span className="text-[10px] text-primary tracking-[0.3em]" style={{ fontFamily: "var(--font-sans)" }}>
+                        {item.nr}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5" style={{ fontFamily: "var(--font-serif)" }}>
+                      {item.titel}
+                    </h3>
+                  </FadeUp>
                   <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: "var(--font-sans)", maxWidth: "42ch" }}>
-                    {item.tekst}
+                    <RevealWords delay={index * 120 + 80}>{item.tekst}</RevealWords>
                   </p>
                 </div>
               ))}
@@ -281,15 +282,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div
             className="relative aspect-[4/5] overflow-hidden order-1 md:order-2"
             style={{
-              backgroundImage: "url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85)",
+              backgroundImage: "url(/images/op-maat.jpg.png)",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute top-0 left-0 w-16 h-16">
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
-              <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-            </div>
           </div>
         </div>
       </section>
@@ -312,11 +309,21 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr] gap-4 md:gap-5">
-            <div className="row-span-2 min-h-[400px] md:min-h-0" style={{ backgroundImage: `url(${KLANTFOTOS[0]})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-            <div className="aspect-square" style={{ backgroundImage: `url(${KLANTFOTOS[1]})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-            <div className="aspect-square" style={{ backgroundImage: `url(${KLANTFOTOS[2]})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-            <div className="aspect-square" style={{ backgroundImage: `url(${KLANTFOTOS[3]})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-            <div className="aspect-square" style={{ backgroundImage: `url(${KLANTFOTOS[4]})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+            <div className="row-span-2 min-h-[400px] md:min-h-0 overflow-hidden">
+              <img src={KLANTFOTOS[0]} alt="" className="w-full h-full object-cover object-center" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img src={KLANTFOTOS[1]} alt="" className="w-full h-full object-cover object-center" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img src={KLANTFOTOS[2]} alt="" className="w-full h-full object-cover object-center" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img src={KLANTFOTOS[3]} alt="" className="w-full h-full object-cover object-center" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img src={KLANTFOTOS[4]} alt="" className="w-full h-full object-cover object-center" />
+            </div>
           </div>
         </div>
       </section>
@@ -340,6 +347,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
 
       {/* ══════════════════════════════════════════
+          NIEUWSBRIEF
+      ══════════════════════════════════════════ */}
+      <NewsletterBanner />
+
+      {/* ══════════════════════════════════════════
           CTA
       ══════════════════════════════════════════ */}
       <section className="py-36 md:py-52">
@@ -351,7 +363,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <span className="block text-[4vw] md:text-[2vw] font-light italic text-muted-foreground tracking-wide mb-3">{h.ctaHeading1}</span>
             <span className="block text-[12vw] md:text-[6vw] font-bold tracking-tight">{h.ctaHeading2}</span>
           </div>
-          <FillButton href={`/${lang}/contact`}>{h.ctaButton}</FillButton>
+          <FillButton href={`/${lang}/verkooppunten`}>{h.ctaButton}</FillButton>
         </div>
       </section>
     </>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FillButton } from "@/components/fill-button";
+import { NewsletterBanner } from "@/components/NewsletterBanner";
 import { RevealWords } from "@/components/reveal-words";
 import { EUFlagMicro } from "@/components/EUFlagMicro";
 
@@ -161,33 +162,12 @@ export default function OverOnsPage() {
                 aria-hidden
                 style={{ top: "1.2rem", left: "1.2rem", border: "1px solid #c4956a", zIndex: 0 }}
               />
-              {/* Vervang onderstaande URL door je eigen foto van het Zeeuwse wapen of een passend beeld */}
-              <div
-                className="relative z-10 aspect-[4/3]"
-                style={{
-                  backgroundImage: "url(/images/zeeland-naam.jpg)",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundColor: "#1a2e1a",
-                }}
-              >
-                {/* Tijdelijke fallback als foto ontbreekt */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                  <p
-                    className="font-light italic text-white/30 text-center"
-                    style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.4rem, 3vw, 2.2rem)" }}
-                  >
-                    Luctor et Emergo
-                  </p>
-                  <div style={{ width: 40, height: 1, backgroundColor: "#c4956a" }} />
-                  <p
-                    className="text-[10px] tracking-[0.3em] uppercase text-white/20"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Zeeland
-                  </p>
-                </div>
-              </div>
+              <img
+                src="/images/zeeland-naam.jpg.png"
+                alt="Zeeuwse wapen — Luctor et Emergo"
+                className="relative z-10 w-full h-auto"
+                style={{ filter: "brightness(1.6)", display: "block" }}
+              />
             </div>
 
             {/* Tekst */}
@@ -390,7 +370,7 @@ export default function OverOnsPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=85)",
+              "url(https://images.unsplash.com/photo-1756736668479-140dfe2b0fe6?w=1600&q=85)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -499,7 +479,12 @@ export default function OverOnsPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          7. CTA
+          7. NIEUWSBRIEF
+      ══════════════════════════════════════════ */}
+      <NewsletterBanner />
+
+      {/* ══════════════════════════════════════════
+          8. CTA
       ══════════════════════════════════════════ */}
       <section
         className="py-36 md:py-48 text-center"

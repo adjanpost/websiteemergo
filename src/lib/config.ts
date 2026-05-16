@@ -28,7 +28,7 @@ export const siteConfig = {
 
   // Producten
   products: [
-    { slug: "kennel", name: "EMERGO Kennel" },
-    { slug: "shelter", name: "EMERGO Shelter" },
+    { slug: "kennel", name: "EMERGO Cortile" },
+    { slug: "shelter", name: "EMERGO Belvedere" },
   ],
 };

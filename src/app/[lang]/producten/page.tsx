@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = {
   title: "Producten",
   description:
-    "Ontdek de EMERGO Kennel en EMERGO Shelter — handgemaakte premium buitenverblijven van massief Europees hout en donkergroen staal.",
+    "Ontdek de EMERGO Cortile en EMERGO Belvedere — handgemaakte premium buitenverblijven van massief Europees hout en donkergroen staal.",
 };
 
 export default async function ProductenPage({ params }: { params: Promise<{ lang: string }> }) {

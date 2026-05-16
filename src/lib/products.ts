@@ -16,13 +16,13 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "kennel",
-    name: "EMERGO Kennel",
+    name: "EMERGO Cortile",
     tagline: "Het klassieke buitenverblijf.",
     cardTagline:
       "Het klassieke buitenverblijf — architectonisch, geïsoleerd, tijdloos.",
     overviewImage: "/images/kennel-hero.jpg",
     intro:
-      "De EMERGO Kennel is ontworpen voor eigenaren die geen compromis willen sluiten. Volledig gesloten, optimaal geïsoleerd en gebouwd om decennialang mooi te blijven.",
+      "De EMERGO Cortile is ontworpen voor eigenaren die geen compromis willen sluiten. Volledig gesloten, optimaal geïsoleerd en gebouwd om decennialang mooi te blijven.",
     description: [
       "De Kennel combineert massief Douglas of larchhout met donkergroen gepoedercoat staal. De dubbele wanden met mineraalwol isolatie zorgen voor een comfortabele temperatuur het hele jaar door — warm in de winter, koel in de zomer.",
       "Elk detail is doordacht: RVS scharnieren, een verhoogde vloer voor ventilatie en hygiëne, en een dak met EPDM afdichting dat geen druppel doorlaat. De Kennel is verkrijgbaar in drie maten en volledig op maat leverbaar.",
@@ -48,13 +48,13 @@ export const products: Product[] = [
   },
   {
     slug: "shelter",
-    name: "EMERGO Shelter",
+    name: "EMERGO Belvedere",
     tagline: "Waar tuin en verblijf samenkomen.",
     cardTagline:
       "Een architectonisch buitenverblijf dat opgaat in de tuin.",
     overviewImage: "/images/shelter-hero.jpg",
     intro:
-      "De EMERGO Shelter is voor de hond die graag buiten is maar altijd een droge, warme plek wil hebben. Half open van voren, volledig beschermd aan de zijkanten en achterkant.",
+      "De EMERGO Belvedere is voor de hond die graag buiten is maar altijd een droge, warme plek wil hebben. Half open van voren, volledig beschermd aan de zijkanten en achterkant.",
     description: [
       "De Shelter heeft een semi-open voorzijde waardoor uw hond vrij zicht heeft op de tuin, terwijl wind en regen worden tegengehouden door de gesloten zij- en achterwanden van verticale larchhout latten in EMERGO groen.",
       "Het dak heeft een lichte overstekrand voor extra bescherming en de verhoogde vloer zorgt voor ventilatie en droge poten. De Shelter is modulair opgebouwd en europallet-proof — eenvoudig te plaatsen, te verplaatsen en uit te breiden.",

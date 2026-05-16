@@ -9,13 +9,13 @@ import { cn } from "@/lib/utils";
 
 type Locale = "nl" | "en" | "de" | "fr";
 
-const NO_HERO_SEGMENTS = ["over-ons", "contact", "materialen", "b2b", "producten", "inspiratie", "ruimteplanner"];
+const NO_HERO_SEGMENTS = ["over-ons", "contact", "materialen", "b2b", "producten", "inspiratie", "ruimteplanner", "verkooppunten"];
 
-const navLabels: Record<Locale, { products: string; materials: string; planner: string; about: string; contact: string; quote: string; discover: string }> = {
-  nl: { products: "Producten", materials: "Materialen", planner: "Planner", about: "Over EMERGO", contact: "Contact", quote: "Offerte", discover: "Ontdek collectie" },
-  en: { products: "Products", materials: "Materials", planner: "Planner", about: "About EMERGO", contact: "Contact", quote: "Quote", discover: "Discover collection" },
-  de: { products: "Produkte", materials: "Materialien", planner: "Planer", about: "Über EMERGO", contact: "Kontakt", quote: "Angebot", discover: "Kollektion entdecken" },
-  fr: { products: "Produits", materials: "Matériaux", planner: "Planificateur", about: "À propos d'EMERGO", contact: "Contact", quote: "Devis", discover: "Découvrir" },
+const navLabels: Record<Locale, { products: string; materials: string; inspiration: string; planner: string; about: string; contact: string; quote: string; discover: string }> = {
+  nl: { products: "Producten", materials: "Materialen", inspiration: "Inspiratie", planner: "Planner", about: "Over EMERGO", contact: "Contact", quote: "Verkooppunten", discover: "Ontdek collectie" },
+  en: { products: "Products", materials: "Materials", inspiration: "Inspiration", planner: "Planner", about: "About EMERGO", contact: "Contact", quote: "Dealers", discover: "Discover collection" },
+  de: { products: "Produkte", materials: "Materialien", inspiration: "Inspiration", planner: "Planer", about: "Über EMERGO", contact: "Kontakt", quote: "Händler", discover: "Kollektion entdecken" },
+  fr: { products: "Produits", materials: "Matériaux", inspiration: "Inspiration", planner: "Planificateur", about: "À propos d'EMERGO", contact: "Contact", quote: "Revendeurs", discover: "Découvrir" },
 };
 
 const langLabels: Record<Locale, string> = { nl: "NL", en: "EN", de: "DE", fr: "FR" };
@@ -71,7 +71,7 @@ export function Navbar() {
   const desktopLinks = [
     { href: `/${locale}/producten`, label: t.products },
     { href: `/${locale}/materialen`, label: t.materials },
-    { href: `/${locale}/ruimteplanner`, label: t.planner },
+    { href: `/${locale}/inspiratie`, label: t.inspiration },
     { href: `/${locale}/over-ons`, label: t.about },
     { href: `/${locale}/contact`, label: t.contact },
   ];
@@ -79,7 +79,7 @@ export function Navbar() {
   const mobileLinks = [
     { href: `/${locale}/producten`, label: t.products },
     { href: `/${locale}/materialen`, label: t.materials },
-    { href: `/${locale}/ruimteplanner`, label: t.planner },
+    { href: `/${locale}/inspiratie`, label: t.inspiration },
     { href: `/${locale}/over-ons`, label: t.about },
     { href: `/${locale}/contact`, label: t.contact },
   ];
@@ -152,10 +152,10 @@ export function Navbar() {
             </div>
 
             <Link
-              href={`/${locale}/contact`}
+              href={`/${locale}/verkooppunten`}
               className={cn(
                 "text-xs tracking-[0.15em] uppercase border px-5 py-2.5 transition-all duration-300 hover:opacity-70",
-                scrolled
+                isScrolled
                   ? "border-primary text-primary hover:bg-primary hover:text-white"
                   : "border-white text-white hover:bg-white/10"
               )}

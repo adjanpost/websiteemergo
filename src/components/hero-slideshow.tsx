@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 
 const SLIDES = [
-  "/images/shelter-hero.jpg",
-  "/images/kennel-hero.jpg",
+  { url: "/images/shelter-hero.jpg.png", position: "center bottom" },
+  { url: "/images/kennel-hero.png", position: "center 80%" },
 ];
 
 const GRADIENT =
-  "linear-gradient(to bottom, rgba(26,46,26,0.2) 0%, rgba(26,46,26,0.55) 50%, rgba(26,46,26,0.93) 100%)";
+  "linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.45) 100%)";
 
 export function HeroSlideshow({ children }: { children: React.ReactNode }) {
   const [current, setCurrent] = useState(0);
@@ -20,14 +20,14 @@ export function HeroSlideshow({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative h-screen min-h-[640px] flex items-end" data-cursor="light">
-      {SLIDES.map((url, i) => (
+      {SLIDES.map((slide, i) => (
         <div
           key={i}
           className="absolute inset-0"
           style={{
-            backgroundImage: `${GRADIENT}, url(${url})`,
+            backgroundImage: `${GRADIENT}, url(${slide.url})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: slide.position,
             opacity: i === current ? 1 : 0,
             transition: "opacity 1.2s ease",
           }}
@@ -37,7 +37,7 @@ export function HeroSlideshow({ children }: { children: React.ReactNode }) {
       <div className="absolute top-0 left-0 right-0 h-1 bg-primary z-10" />
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
-        {SLIDES.map((_, i) => (
+        {SLIDES.map((_slide, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
